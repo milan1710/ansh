@@ -1,0 +1,294 @@
+.multi-step-form {
+  background: linear-gradient(180deg, var(--forest) 0%, var(--deep) 100%);
+}
+
+.multi-step-form .section-head .section-title {
+  color: #fff;
+}
+
+.multi-step-form .section-head .section-subtitle {
+  color: #d8e0d6;
+}
+
+.multi-step-form__card {
+  max-width: 720px;
+  margin-inline: auto;
+  padding: clamp(24px, 4vw, 40px);
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+}
+
+/* प्रगति सूचक */
+.multi-step-form__progress {
+  margin-bottom: 28px;
+}
+
+.multi-step-form__steps {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.multi-step-form__step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+  text-align: center;
+}
+
+.multi-step-form__dot {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: var(--line);
+  color: var(--muted);
+  font-family: var(--font-latin);
+  font-weight: 700;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+.multi-step-form__step--active .multi-step-form__dot {
+  background: var(--forest);
+  color: #fff;
+}
+
+.multi-step-form__step--done .multi-step-form__dot {
+  background: var(--gold);
+  color: #fff;
+}
+
+.multi-step-form__step-label {
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+
+.multi-step-form__step--active .multi-step-form__step-label {
+  color: var(--deep);
+  font-weight: 700;
+}
+
+.multi-step-form__track {
+  margin-top: 14px;
+  height: 5px;
+  border-radius: 999px;
+  background: var(--line);
+  overflow: hidden;
+}
+
+.multi-step-form__track span {
+  display: block;
+  height: 100%;
+  background: var(--gold);
+  border-radius: 999px;
+  transition: width 0.35s ease;
+}
+
+/* फ़ील्ड्स */
+.multi-step-form__fields {
+  display: grid;
+  gap: 16px;
+}
+
+.multi-step-form__row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.multi-step-form__row--three {
+  grid-template-columns: 1fr 1fr 0.8fr;
+}
+
+.multi-step-form__field {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.multi-step-form__field label,
+.multi-step-form__legend {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--deep);
+}
+
+.multi-step-form__field input,
+.multi-step-form__field textarea {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: #fff;
+  padding: 12px 14px;
+  font-size: 0.95rem;
+  color: var(--text);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.multi-step-form__field input:focus,
+.multi-step-form__field textarea:focus {
+  border-color: var(--forest);
+  box-shadow: 0 0 0 3px rgba(18, 61, 34, 0.12);
+}
+
+.multi-step-form__field textarea {
+  resize: vertical;
+  min-height: 74px;
+}
+
+.multi-step-form__field--error input,
+.multi-step-form__field--error textarea {
+  border-color: #c0392b;
+}
+
+.multi-step-form__error {
+  font-size: 0.78rem;
+  color: #c0392b;
+}
+
+/* विकल्प */
+.multi-step-form__options {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.multi-step-form__options--inline {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.multi-step-form__option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 13px 14px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.multi-step-form__option:hover {
+  border-color: var(--gold);
+}
+
+.multi-step-form__option--selected {
+  border-color: var(--forest);
+  background: var(--cream);
+}
+
+.multi-step-form__option input {
+  accent-color: var(--forest);
+  width: auto;
+}
+
+.multi-step-form__option span {
+  font-size: 0.9rem;
+  color: var(--text);
+}
+
+/* सारांश */
+.multi-step-form__summary h3 {
+  font-size: 1.15rem;
+  margin-bottom: 16px;
+  color: var(--deep);
+}
+
+.multi-step-form__summary dl {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.multi-step-form__summary dl > div {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 12px 14px;
+  background: var(--cream);
+  border-radius: var(--radius-sm);
+}
+
+.multi-step-form__summary dt {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.multi-step-form__summary dd {
+  margin: 0;
+  font-size: 0.95rem;
+  color: var(--deep);
+  word-break: break-word;
+}
+
+.multi-step-form__summary-wide {
+  grid-column: 1 / -1;
+}
+
+/* बटन पट्टी */
+.multi-step-form__actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 28px;
+}
+
+.multi-step-form__spin {
+  animation: spin 0.9s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* सफलता स्थिति */
+.multi-step-form__success {
+  text-align: center;
+  padding: 12px 0;
+}
+
+.multi-step-form__success-icon {
+  font-size: 3.2rem;
+  color: var(--forest);
+  margin-bottom: 10px;
+}
+
+.multi-step-form__success h3 {
+  font-size: 1.5rem;
+  color: var(--deep);
+}
+
+.multi-step-form__success p {
+  max-width: 480px;
+  margin: 12px auto 22px;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+@media (max-width: 600px) {
+  .multi-step-form__row,
+  .multi-step-form__row--three,
+  .multi-step-form__summary dl,
+  .multi-step-form__options,
+  .multi-step-form__options--inline {
+    grid-template-columns: 1fr;
+  }
+
+  .multi-step-form__actions {
+    flex-direction: column-reverse;
+  }
+
+  .multi-step-form__actions .btn {
+    width: 100%;
+  }
+}

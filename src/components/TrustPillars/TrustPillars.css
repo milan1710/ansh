@@ -1,0 +1,128 @@
+/* "हम पर भरोसा क्यों करें" — भरोसे की वजहों वाला अनुभाग। */
+
+.trust-pillars {
+  /* ऊपर का अनुभाग क्रीम रंग का है, इसलिए ऊपर से क्रीम → सफ़ेद (सीमलेस)। */
+  background: linear-gradient(180deg, #fff9eb 0%, #ffffff 100%);
+}
+
+.trust-pillars__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(16px, 2.4vw, 24px);
+}
+
+.trust-pillars__card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: clamp(20px, 2.6vw, 28px);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: var(--white);
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.trust-pillars__card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(198, 163, 74, 0.6);
+  box-shadow: var(--shadow-md);
+}
+
+.trust-pillars__icon {
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #123d22 0%, #1c5233 100%);
+  color: var(--gold);
+  font-size: 1.45rem;
+  box-shadow: 0 10px 22px rgba(18, 61, 34, 0.22);
+}
+
+.trust-pillars__card h3 {
+  font-size: 1.06rem;
+  color: var(--deep);
+}
+
+.trust-pillars__card p {
+  font-size: 0.9rem;
+  line-height: 1.7;
+  color: var(--muted);
+}
+
+/* ---------- गारंटी सील ---------- */
+
+.trust-pillars__seal {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-top: clamp(28px, 4vw, 44px);
+  padding: clamp(20px, 2.8vw, 30px);
+  border: 1px solid rgba(198, 163, 74, 0.5);
+  border-radius: var(--radius-lg);
+  background:
+    radial-gradient(circle at 6% 20%, rgba(198, 163, 74, 0.18), transparent 46%),
+    linear-gradient(120deg, #0b2e1a 0%, #123d22 60%, #1c5233 100%);
+  box-shadow: var(--shadow-lg);
+}
+
+.trust-pillars__seal-badge {
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  border: 2px solid rgba(198, 163, 74, 0.7);
+  background: linear-gradient(135deg, #e6c766 0%, #c6a34a 100%);
+  color: #241a05;
+  font-size: 1.9rem;
+  animation: softPulse 2.8s ease-in-out infinite;
+}
+
+.trust-pillars__seal-text {
+  flex: 1;
+  min-width: 220px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.trust-pillars__seal-text strong {
+  font-size: clamp(1.1rem, 2vw, 1.35rem);
+  color: #ffffff;
+}
+
+.trust-pillars__seal-text span {
+  font-size: 0.9rem;
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.trust-pillars__seal-btn {
+  flex-shrink: 0;
+}
+
+@media (max-width: 900px) {
+  .trust-pillars__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  .trust-pillars__grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .trust-pillars__seal {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .trust-pillars__seal-btn {
+    width: 100%;
+  }
+}

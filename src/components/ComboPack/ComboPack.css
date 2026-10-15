@@ -1,0 +1,426 @@
+/* हीरो सेक्शन के ठीक नीचे दिखने वाला कॉम्बो पैक ऑफ़र बैंड। */
+
+.combo-pack {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding-block: clamp(38px, 5vw, 64px);
+  background: linear-gradient(135deg, #061f12 0%, #123d22 52%, #1c5233 100%);
+}
+
+.combo-pack::before,
+.combo-pack::after {
+  content: '';
+  position: absolute;
+  z-index: 0;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+}
+
+.combo-pack::before {
+  width: 380px;
+  height: 380px;
+  top: -150px;
+  right: -120px;
+  background: rgba(198, 163, 74, 0.28);
+}
+
+.combo-pack::after {
+  width: 340px;
+  height: 340px;
+  bottom: -180px;
+  left: -120px;
+  background: rgba(198, 163, 74, 0.16);
+}
+
+.combo-pack__card {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+  gap: clamp(26px, 4vw, 54px);
+  align-items: center;
+  padding: clamp(22px, 3.4vw, 38px);
+  border: 1px solid rgba(198, 163, 74, 0.38);
+  border-radius: var(--radius-lg);
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: var(--shadow-lg);
+}
+
+/* ---------- इमेज + डिस्काउंट रिबन ---------- */
+
+.combo-pack__media {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: var(--radius-md);
+  background: #ffffff;
+  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.35);
+  animation: comboFloat 6s ease-in-out infinite;
+}
+
+.combo-pack__media img {
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+}
+
+.combo-pack__ribbon {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1px;
+  padding: 9px 18px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #e6c766 0%, #c6a34a 100%);
+  color: #241a05;
+  font-family: var(--font-latin);
+  text-align: center;
+  box-shadow: 0 8px 20px rgba(198, 163, 74, 0.4);
+  animation: comboPulseGold 1.9s ease-in-out infinite;
+}
+
+.combo-pack__ribbon strong {
+  font-size: 1.15rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.combo-pack__ribbon em {
+  font-style: normal;
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+}
+
+/* ---------- कंटेंट ---------- */
+
+.combo-pack__eyebrow {
+  color: var(--gold);
+}
+
+.combo-pack__title {
+  margin-top: 12px;
+  color: #ffffff;
+  font-size: clamp(1.55rem, 2.7vw, 2.25rem);
+}
+
+.combo-pack__text {
+  margin-top: 12px;
+  max-width: 560px;
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 0.96rem;
+}
+
+/* ---------- कीमत ---------- */
+
+.combo-pack__price {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px 24px;
+  margin-top: 22px;
+  padding: 16px 20px;
+  border: 1px dashed rgba(198, 163, 74, 0.5);
+  border-radius: var(--radius-md);
+  background: rgba(0, 0, 0, 0.26);
+}
+
+.combo-pack__mrp {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.combo-pack__mrp-label {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.58);
+}
+
+.combo-pack__mrp-old {
+  position: relative;
+  padding-inline: 5px;
+  font-family: var(--font-latin);
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.6);
+  text-decoration: line-through;
+  text-decoration-thickness: 2px;
+}
+
+.combo-pack__mrp-old::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 52%;
+  height: 3px;
+  border-radius: 3px;
+  background: var(--pink);
+  box-shadow: 0 0 12px rgba(200, 45, 97, 0.85);
+  transform: rotate(-11deg);
+}
+
+.combo-pack__off {
+  padding: 6px 13px;
+  border-radius: 999px;
+  background: var(--pink);
+  color: #ffffff;
+  font-size: 0.78rem;
+  font-weight: 700;
+  white-space: nowrap;
+  animation: comboPulsePink 1.9s ease-in-out infinite;
+}
+
+.combo-pack__offer {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.combo-pack__offer-label {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.74);
+}
+
+.combo-pack__offer-value {
+  font-family: var(--font-latin);
+  font-size: clamp(1.9rem, 3.4vw, 2.6rem);
+  font-weight: 800;
+  line-height: 1.1;
+  color: var(--gold-soft);
+  background: linear-gradient(
+    100deg,
+    #c6a34a 0%,
+    #ffffff 20%,
+    #c6a34a 38%,
+    #f8edcd 55%,
+    #ffffff 74%,
+    #c6a34a 100%
+  );
+  background-size: 250% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: comboShine 3.2s linear infinite;
+}
+
+.combo-pack__pack {
+  flex-basis: 100%;
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.66);
+}
+
+/* ---------- दोनों उत्पादों के फायदे ---------- */
+
+.combo-pack__benefits {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.combo-pack__benefit {
+  padding: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.combo-pack__benefit--men {
+  --combo-accent: var(--gold);
+  border-top: 3px solid var(--gold);
+}
+
+.combo-pack__benefit--women {
+  --combo-accent: #f2a2be;
+  border-top: 3px solid #e8789f;
+}
+
+.combo-pack__benefit h3 {
+  font-size: 0.95rem;
+  color: #ffffff;
+}
+
+.combo-pack__benefit ul {
+  display: grid;
+  gap: 11px;
+  margin-top: 14px;
+}
+
+.combo-pack__benefit li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.combo-pack__benefit li svg {
+  flex-shrink: 0;
+  margin-top: 4px;
+  font-size: 1.05rem;
+  color: var(--combo-accent);
+}
+
+.combo-pack__benefit li span {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.combo-pack__benefit li strong {
+  font-size: 0.87rem;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.combo-pack__benefit li em {
+  font-style: normal;
+  font-size: 0.79rem;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.72);
+}
+
+/* ---------- रिज़ल्ट / मनी बैक गारंटी ---------- */
+
+.combo-pack__guarantee {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 20px;
+  padding: 14px 18px;
+  border: 1px solid rgba(198, 163, 74, 0.45);
+  border-radius: var(--radius-md);
+  background: linear-gradient(90deg, rgba(198, 163, 74, 0.24), rgba(198, 163, 74, 0.05));
+}
+
+.combo-pack__guarantee svg {
+  flex-shrink: 0;
+  font-size: 1.7rem;
+  color: var(--gold);
+}
+
+.combo-pack__guarantee span {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.combo-pack__guarantee strong {
+  font-size: 0.98rem;
+  color: #ffffff;
+}
+
+.combo-pack__guarantee em {
+  font-style: normal;
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.76);
+}
+
+/* ---------- बटन ---------- */
+
+.combo-pack__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px 18px;
+  margin-top: 24px;
+}
+
+.combo-pack__note {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--gold-soft);
+}
+
+/* ---------- एनिमेशन ---------- */
+
+@keyframes comboPulseGold {
+  0%,
+  100% {
+    transform: scale(1);
+    box-shadow: 0 8px 20px rgba(198, 163, 74, 0.4);
+  }
+  50% {
+    transform: scale(1.06);
+    box-shadow: 0 12px 30px rgba(198, 163, 74, 0.75);
+  }
+}
+
+@keyframes comboPulsePink {
+  0%,
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(200, 45, 97, 0.6);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 0 0 9px rgba(200, 45, 97, 0);
+  }
+}
+
+@keyframes comboShine {
+  0% {
+    background-position: 220% 0;
+  }
+  100% {
+    background-position: -70% 0;
+  }
+}
+
+@keyframes comboFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-7px);
+  }
+}
+
+/* ---------- रिस्पॉन्सिव ---------- */
+
+@media (max-width: 900px) {
+  .combo-pack__card {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .combo-pack__media {
+    max-width: 560px;
+    margin-inline: auto;
+    width: 100%;
+    animation: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .combo-pack__benefits {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .combo-pack__price {
+    gap: 12px 18px;
+    padding: 14px 16px;
+  }
+
+  .combo-pack__offer {
+    flex-wrap: wrap;
+  }
+
+  .combo-pack__actions .btn {
+    width: 100%;
+  }
+
+  .combo-pack__ribbon {
+    top: 12px;
+    left: 12px;
+    padding: 8px 14px;
+  }
+}
+

@@ -1,0 +1,274 @@
+/* ग्राहक की सच्ची कहानी (success story) — स्कैन करने लायक आकर्षक लेआउट। */
+
+.story {
+  background: linear-gradient(180deg, #ffffff 0%, #fff9eb 55%, #fbf4e0 100%);
+}
+
+.story__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+  gap: clamp(34px, 5vw, 70px);
+  align-items: center;
+}
+
+/* ---------- तस्वीरें ---------- */
+
+.story__media {
+  position: relative;
+  padding-bottom: 46px;
+}
+
+.story__photo {
+  margin: 0;
+  overflow: hidden;
+  border: 6px solid var(--white);
+  border-radius: var(--radius-lg);
+  background: #e8ebdf;
+  box-shadow: var(--shadow-lg);
+}
+
+.story__photo img {
+  width: 100%;
+  aspect-ratio: 16 / 13;
+  object-fit: cover;
+}
+
+.story__photo--small {
+  position: absolute;
+  right: -14px;
+  bottom: 0;
+  width: 46%;
+  border-width: 5px;
+  border-radius: var(--radius-md);
+  animation: floatY 7s ease-in-out infinite;
+}
+
+.story__photo--small img {
+  aspect-ratio: 1 / 1;
+}
+
+.story__badge {
+  position: absolute;
+  top: -14px;
+  left: -14px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 12px 18px;
+  border-radius: var(--radius-md);
+  background: linear-gradient(135deg, #e6c766 0%, #c6a34a 100%);
+  color: #241a05;
+  box-shadow: 0 14px 30px rgba(198, 163, 74, 0.45);
+}
+
+.story__badge em {
+  font-style: normal;
+  font-size: 0.66rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  opacity: 0.85;
+}
+
+.story__badge strong {
+  font-size: 1rem;
+  font-weight: 800;
+}
+
+/* ---------- कहानी का टेक्स्ट ---------- */
+
+.story__title {
+  margin-top: 12px;
+  font-size: clamp(1.8rem, 3.2vw, 2.5rem);
+}
+
+.story__rating {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 14px;
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+
+.story__stars {
+  display: inline-flex;
+  gap: 3px;
+  color: var(--gold);
+  font-size: 0.95rem;
+}
+
+.story__quote {
+  position: relative;
+  margin: 22px 0 0;
+  padding: 22px 24px 22px 52px;
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--gold);
+  border-radius: var(--radius-md);
+  background: var(--white);
+  box-shadow: var(--shadow-sm);
+}
+
+.story__quote-mark {
+  position: absolute;
+  left: 20px;
+  top: 24px;
+  font-size: 1.3rem;
+  color: rgba(198, 163, 74, 0.8);
+}
+
+.story__quote p {
+  font-size: 0.94rem;
+  line-height: 1.85;
+  color: var(--text);
+}
+
+.story__quote p + p {
+  margin-top: 12px;
+}
+
+/* ---------- छोटे तथ्य ---------- */
+
+.story__facts {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 22px;
+}
+
+.story__facts li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background: var(--white);
+  box-shadow: var(--shadow-sm);
+}
+
+.story__fact-icon {
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: #e7efe2;
+  color: var(--forest);
+  font-size: 1rem;
+}
+
+.story__fact-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.3;
+  min-width: 0;
+}
+
+.story__fact-text strong {
+  font-family: var(--font-latin);
+  font-size: 0.86rem;
+  color: var(--deep);
+}
+
+.story__fact-text em {
+  font-style: normal;
+  font-size: 0.72rem;
+  color: var(--muted);
+}
+
+/* ---------- लेखिका ---------- */
+
+.story__author {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.story__avatar {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #c82d61, #a51f4b);
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 1.1rem;
+  box-shadow: 0 6px 16px rgba(165, 31, 75, 0.28);
+}
+
+.story__author-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.3;
+}
+
+.story__author-text strong {
+  font-size: 0.95rem;
+  color: var(--deep);
+}
+
+.story__author-text em {
+  font-style: normal;
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+
+.story__actions {
+  margin-top: 22px;
+}
+
+/* ---------- रिस्पॉन्सिव ---------- */
+
+@media (max-width: 900px) {
+  .story__grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .story__media {
+    max-width: 560px;
+    margin-inline: auto;
+    width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  .story__facts {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .story__media {
+    padding-bottom: 28px;
+  }
+
+  .story__quote {
+    padding: 18px 18px 18px 42px;
+  }
+
+  .story__quote-mark {
+    left: 14px;
+    top: 20px;
+  }
+
+  .story__photo--small {
+    right: -6px;
+  }
+
+  .story__badge {
+    top: -10px;
+    left: -8px;
+    padding: 10px 14px;
+  }
+
+  .story__actions .btn {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .story__photo--small {
+    animation: none;
+  }
+}

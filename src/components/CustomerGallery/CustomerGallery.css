@@ -1,0 +1,243 @@
+/* हमारे खुश ग्राहकों की गैलरी (happy customers gallery)। */
+
+.gallery {
+  background: linear-gradient(180deg, #fff9eb 0%, #ffffff 100%);
+}
+
+.gallery__bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px 14px;
+  width: fit-content;
+  margin-inline: auto;
+  margin-bottom: clamp(24px, 3.4vw, 36px);
+  padding: 10px 20px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--white);
+  box-shadow: var(--shadow-sm);
+}
+
+.gallery__bar svg {
+  color: var(--gold-dark);
+}
+
+.gallery__bar strong {
+  font-size: 0.85rem;
+  color: var(--forest);
+}
+
+.gallery__bar span {
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+/* ---------- गैलरी ग्रिड ---------- */
+
+.gallery__grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(12px, 1.6vw, 20px);
+}
+
+.gallery__item {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  box-shadow: var(--shadow-sm);
+  cursor: zoom-in;
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.gallery__item:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+.gallery__item img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  transition: transform 0.45s ease;
+}
+
+.gallery__item:hover img,
+.gallery__item:focus-visible img {
+  transform: scale(1.06);
+}
+
+.gallery__overlay {
+  position: absolute;
+  inset: auto 0 0 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 26px 14px 12px;
+  background: linear-gradient(180deg, rgba(8, 43, 24, 0) 0%, rgba(8, 43, 24, 0.8) 100%);
+  color: #ffffff;
+  font-size: 0.78rem;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.gallery__item:hover .gallery__overlay,
+.gallery__item:focus-visible .gallery__overlay {
+  opacity: 1;
+}
+
+.gallery__overlay svg {
+  flex-shrink: 0;
+  font-size: 1rem;
+}
+
+.gallery__overlay em {
+  font-style: normal;
+  font-weight: 600;
+}
+
+/* ---------- बड़ा करके देखने वाला व्यू (lightbox) ---------- */
+
+.gallery__lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  display: grid;
+  place-items: center;
+  padding: clamp(16px, 4vw, 48px);
+  background: rgba(6, 20, 12, 0.93);
+  backdrop-filter: blur(6px);
+}
+
+.gallery__stage {
+  position: relative;
+  margin: 0;
+  max-width: min(92vw, 620px);
+  overflow: hidden;
+  border: 6px solid rgba(255, 255, 255, 0.9);
+  border-radius: var(--radius-lg);
+  background: #ffffff;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.55);
+}
+
+.gallery__stage img {
+  display: block;
+  width: 100%;
+  max-height: 76vh;
+  object-fit: contain;
+}
+
+.gallery__stage figcaption {
+  position: absolute;
+  inset: auto 0 0 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 28px 16px 12px;
+  background: linear-gradient(180deg, rgba(8, 43, 24, 0) 0%, rgba(8, 43, 24, 0.82) 100%);
+  color: #ffffff;
+  font-size: 0.82rem;
+}
+
+.gallery__stage figcaption em {
+  font-style: normal;
+  font-family: var(--font-latin);
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.gallery__close,
+.gallery__nav {
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+  transition: background-color 0.2s ease;
+}
+
+.gallery__close:hover,
+.gallery__nav:hover {
+  background: rgba(255, 255, 255, 0.26);
+}
+
+.gallery__close {
+  position: absolute;
+  top: clamp(12px, 2.4vw, 24px);
+  right: clamp(12px, 2.4vw, 24px);
+  width: 44px;
+  height: 44px;
+  font-size: 1.4rem;
+}
+
+.gallery__nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 46px;
+  height: 46px;
+  font-size: 1.4rem;
+}
+
+.gallery__nav--prev {
+  left: clamp(8px, 2vw, 28px);
+}
+
+.gallery__nav--next {
+  right: clamp(8px, 2vw, 28px);
+}
+
+/* ---------- रिस्पॉन्सिव ---------- */
+
+@media (max-width: 1024px) {
+  .gallery__grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 700px) {
+  .gallery__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .gallery__bar {
+    width: 100%;
+    border-radius: var(--radius-md);
+  }
+
+  .gallery__overlay {
+    padding: 18px 10px 10px;
+    font-size: 0.72rem;
+    opacity: 1;
+  }
+
+  .gallery__stage {
+    border-width: 4px;
+    max-width: 94vw;
+  }
+
+  .gallery__nav {
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+  }
+
+  .gallery__close {
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+  }
+}
+

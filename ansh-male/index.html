@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="hi" translate="no">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="google" content="notranslate" />
+    <style>
+      /* Google Translate ka top banner / tooltip kisi bhi haal me na dikhe. */
+      .goog-te-banner-frame,
+      #goog-gt-tt,
+      .goog-te-balloon-frame,
+      .goog-tooltip,
+      .goog-tooltip:hover {
+        display: none !important;
+      }
+      body {
+        top: 0 !important;
+      }
+      .goog-text-highlight {
+        background: none !important;
+        box-shadow: none !important;
+      }
+    </style>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#123D22" />
+    <meta
+      name="description"
+      content="Ansh Ayurveda For Men — पुरुषों के लिए 17 आयुर्वेदिक जड़ी-बूटियों का शुद्ध मिश्रण। शुक्राणु की कमी, शीघ्रपतन, सेक्स टाइमिंग और मर्दाना कमजोरी के लिए 1 महीने का कोर्स सिर्फ ₹1499 में।"
+    />
+    <title>Ansh Ayurveda For Men | पुरुषों की ताकत का आयुर्वेदिक कोर्स — ₹1499</title>
+
+    <!--
+      Facebook Pixel
+      Pixel ID, नंबर आदि बदलने के लिए प्रोजेक्ट की जड़ में मौजूद .env फ़ाइल बदलें।
+      VITE_FB_PIXEL_ID खाली रहने पर Pixel लोड नहीं होगा और साइट सामान्य रूप से चलेगी।
+    -->
+    <script>
+      (function () {
+        var pixelId = '%VITE_FB_PIXEL_ID%';
+        if (!pixelId || pixelId.indexOf('%') !== -1) {
+          return;
+        }
+        !(function (f, b, e, v, n, t, s) {
+          if (f.fbq) return;
+          n = f.fbq = function () {
+            n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments);
+          };
+          if (!f._fbq) f._fbq = n;
+          n.push = n;
+          n.loaded = !0;
+          n.version = '2.0';
+          n.queue = [];
+          t = b.createElement(e);
+          t.async = !0;
+          t.src = v;
+          s = b.getElementsByTagName(e)[0];
+          s.parentNode.insertBefore(t, s);
+        })(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+        window.fbq('init', pixelId);
+        window.fbq('track', 'PageView');
+      })();
+    </script>
+
+    <!-- सोशल शेयरिंग के लिए Open Graph / Twitter टैग -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Ansh Ayurveda" />
+    <meta property="og:locale" content="hi_IN" />
+    <meta property="og:title" content="Ansh Ayurveda For Men — पुरुषों की ताकत का आयुर्वेदिक कोर्स" />
+    <meta
+      property="og:description"
+      content="17 जड़ी-बूटियों का शुद्ध मिश्रण। 1 महीने का कोर्स सिर्फ ₹1499 में। शुक्राणु की कमी, शीघ्रपतन और सेक्स टाइमिंग के लिए।"
+    />
+    <meta property="og:image" content="/images/Ansh Ayurveda Natural Wellness Logo.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Ansh Ayurveda For Men — पुरुषों की ताकत का आयुर्वेदिक कोर्स" />
+    <meta
+      name="twitter:description"
+      content="17 जड़ी-बूटियों का शुद्ध मिश्रण। 1 महीने का कोर्स सिर्फ ₹1499 में।"
+    />
+    <meta name="robots" content="index, follow" />
+
+    <!-- सर्च इंजन के लिए संरचित जानकारी (structured data) -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Product",
+        "name": "Ansh Ayurveda For Men",
+        "description": "पुरुषों के लिए 17 आयुर्वेदिक जड़ी-बूटियों का शुद्ध मिश्रण — शुक्राणु की कमी, शीघ्रपतन, सेक्स टाइमिंग और मर्दाना कमजोरी के लिए।",
+        "brand": { "@type": "Brand", "name": "Ansh Ayurveda" },
+        "offers": {
+          "@type": "Offer",
+          "price": "1499",
+          "priceCurrency": "INR",
+          "availability": "https://schema.org/InStock"
+        },
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "5.0",
+          "bestRating": "5",
+          "worstRating": "1",
+          "reviewCount": "8"
+        }
+      }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/ansh-male/src/male/main.jsx"></script>
+  </body>
+</html>

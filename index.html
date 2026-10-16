@@ -1,20 +1,37 @@
 <!doctype html>
-<html lang="hi">
+<html lang="hi" translate="no">
   <head>
     <meta charset="UTF-8" />
+    <meta name="google" content="notranslate" />
+    <style>
+      /* Google Translate ka top banner / tooltip kisi bhi haal me na dikhe. */
+      .goog-te-banner-frame,
+      #goog-gt-tt,
+      .goog-te-balloon-frame,
+      .goog-tooltip,
+      .goog-tooltip:hover {
+        display: none !important;
+      }
+      body {
+        top: 0 !important;
+      }
+      .goog-text-highlight {
+        background: none !important;
+        box-shadow: none !important;
+      }
+    </style>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#123D22" />
     <meta
       name="description"
-      content="Ansh Ayurveda — Natural Wellness. पुरुषों और महिलाओं के लिए आयुर्वेदिक वेलनेस उत्पादों की जानकारी प्राप्त करें और अपनी आवश्यकता के अनुसार सही विकल्प चुनें।"
+      content="Ansh Ayurveda — अपनी पसंद की वेबसाइट चुनें: कॉम्बो (हिंदी/English), ગુજરાતી या पुरुषों के लिए।"
     />
-    <title>Ansh Ayurveda — Natural Wellness | प्राकृतिक आयुर्वेदिक वेलनेस</title>
+    <title>Ansh Ayurveda — अपनी वेबसाइट चुनें</title>
 
     <!--
-      Facebook Pixel
-      Pixel ID, नंबर आदि बदलने के लिए प्रोजेक्ट की जड़ में मौजूद .env फ़ाइल बदलें।
-      VITE_FB_PIXEL_ID खाली रहने पर Pixel लोड नहीं होगा और साइट सामान्य रूप से चलेगी।
+      Facebook Pixel — बाक़ी पेजों की तरह ही .env की VITE_FB_PIXEL_ID से चलता है।
+      Pixel ID खाली रहने पर Pixel लोड नहीं होगा और पेज सामान्य रूप से चलेगा।
     -->
     <script>
       (function () {
@@ -43,71 +60,270 @@
       })();
     </script>
 
-    <!-- सोशल शेयरिंग के लिए Open Graph / Twitter टैग -->
-    <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="Ansh Ayurveda" />
-    <meta property="og:locale" content="hi_IN" />
-    <meta property="og:title" content="Ansh Ayurveda — प्राकृतिक आयुर्वेदिक वेलनेस" />
-    <meta
-      property="og:description"
-      content="पुरुषों और महिलाओं के लिए आयुर्वेदिक वेलनेस उत्पाद। 17 जड़ी-बूटियों का मिश्रण, 2 महीने का कोर्स और 100% मनी बैक गारंटी।"
-    />
-    <meta property="og:image" content="/images/Ansh Ayurveda Natural Wellness Logo.png" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Ansh Ayurveda — प्राकृतिक आयुर्वेदिक वेलनेस" />
-    <meta
-      name="twitter:description"
-      content="पुरुषों और महिलाओं के लिए आयुर्वेदिक वेलनेस उत्पाद। 17 जड़ी-बूटियों का मिश्रण, 2 महीने का कोर्स और 100% मनी बैक गारंटी।"
-    />
-    <meta name="robots" content="index, follow" />
-
-    <!-- सर्च इंजन के लिए संरचित जानकारी (structured data) -->
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "HealthAndBeautyBusiness",
-        "name": "Ansh Ayurveda",
-        "description": "पुरुषों और महिलाओं के लिए आयुर्वेदिक वेलनेस उत्पाद — 17 जड़ी-बूटियों का मिश्रण और 2 महीने का कोर्स।",
-        "telephone": "+917041305592",
-        "email": "anshayurveda@gmail.com",
-        "priceRange": "₹2490",
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "Shop No. 12, Shivam Complex, New Ranip",
-          "addressLocality": "Ahmedabad",
-          "addressRegion": "Gujarat",
-          "postalCode": "380015",
-          "addressCountry": "IN"
-        },
-        "aggregateRating": {
-          "@type": "AggregateRating",
-          "ratingValue": "5.0",
-          "bestRating": "5",
-          "worstRating": "1",
-          "reviewCount": "16"
-        },
-        "makesOffer": {
-          "@type": "Offer",
-          "itemOffered": {
-            "@type": "Product",
-            "name": "Ansh Ayurveda Combo Pack",
-            "description": "पुरुषों और महिलाओं के लिए आयुर्वेदिक वेलनेस उत्पाद — 2 महीने का कोर्स।"
-          },
-          "price": "2490",
-          "priceCurrency": "INR"
-        }
-      }
-    </script>
-
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
+
+    <style>
+      :root {
+        --gold: #c6a34a;
+        --font-body: 'Noto Sans Devanagari', 'Poppins', system-ui, -apple-system, sans-serif;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        padding: clamp(22px, 4vw, 56px) clamp(16px, 4vw, 40px);
+        font-family: var(--font-body);
+        color: #ffffff;
+        background:
+          radial-gradient(900px 520px at 10% -12%, rgba(198, 163, 74, 0.22), transparent 60%),
+          radial-gradient(760px 520px at 94% 6%, rgba(37, 211, 102, 0.14), transparent 60%),
+          linear-gradient(160deg, #061f12 0%, #123d22 55%, #1c5233 100%);
+        -webkit-font-smoothing: antialiased;
+      }
+
+      .selector {
+        max-width: 1120px;
+        margin: 0 auto;
+      }
+
+      .selector__head {
+        text-align: center;
+        margin-bottom: clamp(24px, 4vw, 46px);
+      }
+
+      .selector__logo {
+        width: clamp(92px, 15vw, 136px);
+        height: auto;
+        filter: drop-shadow(0 12px 28px rgba(0, 0, 0, 0.38));
+      }
+
+      .selector__eyebrow {
+        margin: 16px 0 6px;
+        font-size: 0.8rem;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: var(--gold);
+        font-weight: 700;
+      }
+
+      .selector__title {
+        margin: 0 0 10px;
+        font-size: clamp(1.45rem, 4.4vw, 2.4rem);
+        line-height: 1.28;
+      }
+
+      .selector__subtitle {
+        margin: 0 auto;
+        max-width: 640px;
+        color: rgba(255, 255, 255, 0.8);
+        font-size: clamp(0.95rem, 2.4vw, 1.08rem);
+        line-height: 1.7;
+      }
+
+      .selector__grid {
+        display: grid;
+        gap: clamp(16px, 2.4vw, 26px);
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .site-card {
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        text-decoration: none;
+        color: inherit;
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        border-radius: 22px;
+        background: rgba(255, 255, 255, 0.06);
+        box-shadow: 0 18px 44px rgba(0, 0, 0, 0.28);
+        transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease,
+          background 0.25s ease;
+      }
+
+      .site-card:hover,
+      .site-card:focus-visible {
+        transform: translateY(-6px);
+        border-color: var(--gold);
+        background: rgba(255, 255, 255, 0.1);
+        box-shadow: 0 26px 60px rgba(0, 0, 0, 0.4);
+        outline: none;
+      }
+
+      .site-card__thumb {
+        position: relative;
+        display: block;
+        aspect-ratio: 16 / 10;
+        overflow: hidden;
+        background: #0b2a19;
+      }
+
+      .site-card__thumb img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        transition: transform 0.4s ease;
+      }
+
+      .site-card:hover .site-card__thumb img {
+        transform: scale(1.06);
+      }
+
+      .site-card__body {
+        display: flex;
+        flex-direction: column;
+        gap: 9px;
+        padding: clamp(16px, 2.4vw, 22px);
+      }
+
+      .site-card__badge {
+        align-self: flex-start;
+        padding: 5px 12px;
+        border-radius: 999px;
+        background: rgba(198, 163, 74, 0.18);
+        border: 1px solid rgba(198, 163, 74, 0.45);
+        color: var(--gold);
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+      }
+
+      .site-card__name {
+        font-size: clamp(1.05rem, 2.6vw, 1.28rem);
+        line-height: 1.4;
+      }
+
+      .site-card__desc {
+        font-style: normal;
+        color: rgba(255, 255, 255, 0.78);
+        font-size: 0.9rem;
+        line-height: 1.65;
+      }
+
+      .site-card__cta {
+        margin-top: 6px;
+        font-weight: 700;
+        color: var(--gold);
+        font-size: 0.92rem;
+      }
+
+      .site-card__cta::after {
+        content: '';
+        display: block;
+        width: 0;
+        height: 2px;
+        margin-top: 3px;
+        background: var(--gold);
+        transition: width 0.3s ease;
+      }
+
+      .site-card:hover .site-card__cta::after {
+        width: 100%;
+      }
+
+      .selector__note {
+        margin: clamp(22px, 4vw, 42px) 0 0;
+        text-align: center;
+        color: rgba(255, 255, 255, 0.6);
+        font-size: 0.85rem;
+      }
+
+      @media (max-width: 900px) {
+        .selector__grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .site-card,
+        .site-card__thumb img,
+        .site-card__cta::after {
+          transition: none;
+        }
+      }
+    </style>
   </head>
   <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
+    <main class="selector">
+      <header class="selector__head">
+        <img
+          class="selector__logo"
+          src="/images/Ansh Ayurveda Natural Wellness Logo.png"
+          alt="Ansh Ayurveda"
+        />
+        <p class="selector__eyebrow">Ansh Ayurveda · Natural Wellness</p>
+        <h1 class="selector__title">आप कौन-सी वेबसाइट देखना चाहते हैं?</h1>
+        <p class="selector__subtitle">
+          नीचे दी गई तीन में से कोई एक चुनें — वेबसाइट तुरंत खुल जाएगी।
+        </p>
+      </header>
+
+      <div class="selector__grid">
+        <a class="site-card" href="/ansh-combo/">
+          <span class="site-card__thumb">
+            <img
+              src="/images/Ansh Ayurveda Men’s and Women’s Supplements.webp"
+              alt="Ansh Ayurveda Combo Pack"
+              loading="lazy"
+            />
+          </span>
+          <span class="site-card__body">
+            <span class="site-card__badge">Combo · हिंदी + English</span>
+            <strong class="site-card__name">Ansh Ayurveda Combo Pack</strong>
+            <em class="site-card__desc"
+              >पुरुष + महिला दोनों के लिए — 2 महीने का कोर्स, एक साथ।</em
+            >
+            <span class="site-card__cta">वेबसाइट खोलें →</span>
+          </span>
+        </a>
+
+        <a class="site-card" href="/ansh-gujarati/">
+          <span class="site-card__thumb">
+            <img
+              src="/images/Ansh Ayurveda Family Wellness Portrait.webp"
+              alt="Ansh Ayurveda ગુજરાતી"
+              loading="lazy"
+            />
+          </span>
+          <span class="site-card__body">
+            <span class="site-card__badge">ગુજરાતી</span>
+            <strong class="site-card__name">Ansh Ayurveda — ગુજરાતી</strong>
+            <em class="site-card__desc"
+              >પુરુષ + મહિલા કોમ્બો — આખા પરિવારના સ્વાસ્થ્ય માટે.</em
+            >
+            <span class="site-card__cta">વેબસાઇટ ખોલો →</span>
+          </span>
+        </a>
+
+        <a class="site-card" href="/ansh-male/">
+          <span class="site-card__thumb">
+            <img
+              src="/images/Ansh Ayurveda Men’s Herbal Supplement Bottle.webp"
+              alt="Ansh Ayurveda For Men"
+              loading="lazy"
+            />
+          </span>
+          <span class="site-card__body">
+            <span class="site-card__badge">For Men · हिंदी</span>
+            <strong class="site-card__name">Ansh Ayurveda For Men</strong>
+            <em class="site-card__desc"
+              >पुरुषों की ताकत — 17 जड़ी-बूटियों का कोर्स, ₹1499 से।</em
+            >
+            <span class="site-card__cta">वेबसाइट खोलें →</span>
+          </span>
+        </a>
+      </div>
+
+      <p class="selector__note">सभी वेबसाइट्स पर जानकारी और ऑर्डर फ़ॉर्म उपलब्ध है।</p>
+    </main>
   </body>
 </html>

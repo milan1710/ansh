@@ -1,0 +1,222 @@
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid transparent;
+  transition:
+    box-shadow 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.header--scrolled {
+  box-shadow: var(--shadow-sm);
+  border-bottom-color: var(--line);
+}
+
+.header__inner {
+  height: var(--header-h);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+.header__brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+.header__brand img {
+  height: 50px;
+  width: auto;
+  object-fit: contain;
+}
+
+.header__brand-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.15;
+}
+
+.header__brand-text strong {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--deep);
+}
+
+.header__brand-text em {
+  font-family: var(--font-latin);
+  font-style: normal;
+  font-size: 0.66rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold-dark);
+}
+
+.header__nav {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.header__menu {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.header__menu a {
+  display: inline-block;
+  padding: 8px 11px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text);
+  border-radius: 8px;
+  transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+.header__menu a:hover {
+  color: var(--forest);
+  background: var(--cream);
+}
+
+.header__cta {
+  flex-shrink: 0;
+}
+
+/* नीचे चलने वाली पतली स्क्रॉल-प्रगति पट्टी */
+.header__progress {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 3px;
+  border-radius: 0 3px 3px 0;
+  background: linear-gradient(90deg, var(--gold-dark), var(--gold), #e6c766);
+  transition: width 0.12s linear;
+}
+
+/* हेडर में सीधा कॉल बटन */
+.header__call {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+  padding: 9px 15px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--cream);
+  color: var(--forest);
+  font-family: var(--font-latin);
+  font-size: 0.82rem;
+  font-weight: 600;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.header__call svg {
+  color: var(--gold-dark);
+}
+
+.header__call:hover {
+  background: var(--forest);
+  border-color: var(--forest);
+  color: #ffffff;
+}
+
+.header__call:hover svg {
+  color: var(--gold);
+}
+
+.header__toggle {
+  display: none;
+  border: 0;
+  background: transparent;
+  color: var(--deep);
+  padding: 6px;
+  border-radius: 8px;
+}
+
+@media (max-width: 1024px) {
+  .header__toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .header__nav {
+    position: fixed;
+    inset: var(--header-h) 0 auto 0;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+    background: #ffffff;
+    padding: 18px 20px 26px;
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-130%);
+    opacity: 0;
+    visibility: hidden;
+    transition: transform 0.3s ease, opacity 0.3s ease, visibility 0.3s;
+    max-height: calc(100vh - var(--header-h));
+    overflow-y: auto;
+  }
+
+  .header__nav--open {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .header__menu {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+  }
+
+  .header__menu a {
+    padding: 12px 10px;
+    border-bottom: 1px solid var(--line);
+    border-radius: 0;
+    font-size: 1rem;
+  }
+
+  .header__cta {
+    margin-top: 14px;
+  }
+
+  .header__call {
+    justify-content: center;
+    width: 100%;
+    padding: 12px 16px;
+    font-size: 0.92rem;
+  }
+}
+
+/* मध्यम स्क्रीन पर सिर्फ़ कॉल आइकन दिखाएँ ताकि मेन्यू टाइट न लगे। */
+@media (min-width: 1025px) and (max-width: 1180px) {
+  .header__call {
+    padding: 10px;
+  }
+
+  .header__call span {
+    display: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .header__brand img {
+    height: 42px;
+  }
+
+  .header__brand-text strong {
+    font-size: 0.98rem;
+  }
+
+  .header__brand-text em {
+    font-size: 0.58rem;
+    letter-spacing: 0.16em;
+  }
+}

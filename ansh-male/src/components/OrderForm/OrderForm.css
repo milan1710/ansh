@@ -1,0 +1,283 @@
+/* ऑर्डर फ़ॉर्म — असली CRM फ़ॉर्म, वेबसाइट जैसी डिज़ाइन और ऑफ़र की urgency के साथ। */
+
+.order-form {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background: linear-gradient(160deg, #061f12 0%, #123d22 55%, #1c5233 100%);
+}
+
+.order-form__blob {
+  position: absolute;
+  z-index: 0;
+  border-radius: 50%;
+  filter: blur(90px);
+  pointer-events: none;
+}
+
+.order-form__blob--gold {
+  width: 420px;
+  height: 420px;
+  top: -160px;
+  right: -140px;
+  background: rgba(198, 163, 74, 0.26);
+}
+
+.order-form__blob--green {
+  width: 360px;
+  height: 360px;
+  bottom: -170px;
+  left: -130px;
+  background: rgba(37, 211, 102, 0.14);
+}
+
+.order-form__head {
+  position: relative;
+  z-index: 1;
+}
+
+.order-form .section-title {
+  color: #ffffff;
+}
+
+.order-form .section-subtitle {
+  color: #d8e0d6;
+}
+
+.order-form__eyebrow {
+  color: var(--gold);
+}
+
+.order-form__card {
+  position: relative;
+  z-index: 1;
+  max-width: 980px;
+  margin-inline: auto;
+  overflow: hidden;
+  border: 1px solid rgba(198, 163, 74, 0.28);
+  border-radius: var(--radius-lg);
+  background: var(--white);
+  box-shadow: var(--shadow-lg);
+}
+
+/* ---------- उलटी गिनती वाली urgency पट्टी ---------- */
+
+.order-form__urgency {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px 20px;
+  padding: clamp(14px, 2.4vw, 20px) clamp(18px, 3vw, 30px);
+  background: linear-gradient(120deg, #0b2c19 0%, #1c5233 60%, #123d22 100%);
+  border-bottom: 1px solid rgba(198, 163, 74, 0.4);
+}
+
+/* urgency पट्टी के अंदर countdown सादा और सपाट दिखे। */
+.order-form__urgency .countdown {
+  margin-top: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+}
+
+.order-form__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 14px;
+  border: 1px solid rgba(198, 163, 74, 0.5);
+  border-radius: 999px;
+  background: rgba(198, 163, 74, 0.16);
+  color: var(--gold-soft);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  animation: softPulse 2.4s ease-in-out infinite;
+}
+
+.order-form__badge svg {
+  font-size: 0.95rem;
+}
+
+/* ---------- फ़ॉर्म + भरोसे की सूची ---------- */
+
+.order-form__body {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  gap: clamp(22px, 3.2vw, 40px);
+  padding: clamp(20px, 3.4vw, 36px);
+}
+
+.order-form__form {
+  display: grid;
+  align-content: start;
+  gap: 16px;
+}
+
+.order-form__field {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.order-form__field label {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--deep);
+}
+
+.order-input {
+  width: 100%;
+  padding: 14px 16px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: #ffffff;
+  font-size: 0.98rem;
+  color: var(--text);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.order-input::placeholder {
+  color: #9aa39a;
+}
+
+.order-input:focus {
+  outline: none;
+  border-color: var(--forest);
+  box-shadow: 0 0 0 3px rgba(18, 61, 34, 0.12);
+}
+
+.order-form__submit {
+  margin-top: 6px;
+  font-size: 1.02rem;
+  animation: softPulse 2.6s ease-in-out infinite;
+}
+
+.order-form__note {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 0.79rem;
+  color: var(--muted);
+  text-align: center;
+}
+
+.order-form__note svg {
+  flex: none;
+  color: var(--forest);
+}
+
+.order-form__side {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: clamp(18px, 2.6vw, 26px);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background: var(--cream);
+}
+
+.order-form__side-title {
+  font-size: 1.1rem;
+}
+
+.order-form__trust {
+  display: grid;
+  gap: 14px;
+}
+
+.order-form__trust li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.order-form__trust li svg {
+  flex: none;
+  margin-top: 3px;
+  font-size: 1.1rem;
+  color: var(--gold-dark);
+}
+
+.order-form__trust strong {
+  display: block;
+  font-size: 0.92rem;
+  color: var(--deep);
+}
+
+.order-form__trust em {
+  font-style: normal;
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+
+.order-form__cta {
+  margin-top: auto;
+  padding-top: 16px;
+  border-top: 1px dashed var(--line);
+}
+
+.order-form__cta-text {
+  margin-bottom: 10px;
+  font-size: 0.84rem;
+  color: var(--muted);
+}
+
+.order-form__cta-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.order-form__cta-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 14px;
+  border-radius: 999px;
+  color: #ffffff;
+  font-size: 0.88rem;
+  font-weight: 700;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+}
+
+.order-form__cta-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  filter: brightness(1.05);
+}
+
+.order-form__cta-btn--call {
+  background: linear-gradient(135deg, #1c5233 0%, #123d22 100%);
+}
+
+.order-form__cta-btn--wa {
+  background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
+}
+
+@media (max-width: 860px) {
+  .order-form__body {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 520px) {
+  .order-form__urgency {
+    justify-content: center;
+    text-align: center;
+  }
+
+  .order-form__cta-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .order-form__badge,
+  .order-form__submit {
+    animation: none;
+  }
+}

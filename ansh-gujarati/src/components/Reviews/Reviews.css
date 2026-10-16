@@ -1,0 +1,301 @@
+/* ग्राहक समीक्षाएँ — बिना किसी एनिमेशन के, आराम से पढ़ने योग्य ग्रिड। */
+
+.reviews {
+  background: linear-gradient(180deg, #ffffff 0%, #fff9eb 100%);
+}
+
+.reviews__empty {
+  max-width: 560px;
+  margin-inline: auto;
+  text-align: center;
+  padding: 40px 28px;
+  border: 1px dashed var(--line);
+  border-radius: var(--radius-lg);
+  background: var(--cream);
+}
+
+.reviews__empty p {
+  color: var(--muted);
+  font-size: 0.98rem;
+  line-height: 1.7;
+}
+
+/* ---------- जानकारी पट्टी ---------- */
+
+.reviews__bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  width: fit-content;
+  margin-inline: auto;
+  margin-bottom: clamp(26px, 3.6vw, 40px);
+  padding: 10px 20px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--white);
+  box-shadow: var(--shadow-sm);
+}
+
+.reviews__bar-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #16a34a;
+}
+
+.reviews__bar-label {
+  font-size: 0.82rem;
+  letter-spacing: 0.04em;
+  color: var(--forest);
+}
+
+.reviews__bar-count {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+
+.reviews__bar-count svg {
+  color: var(--gold-dark);
+}
+
+.reviews__bar-rating {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.82rem;
+  color: var(--deep);
+}
+
+.reviews__bar-rating svg {
+  color: var(--gold);
+}
+
+.reviews__bar-rating strong {
+  font-family: var(--font-latin);
+  color: var(--forest);
+}
+
+/* ---------- रिव्यू ग्रिड ---------- */
+
+.reviews__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.reviews__cell {
+  display: flex;
+}
+
+.reviews__cell .reviews__card {
+  flex: 1;
+}
+
+.reviews__card {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 22px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background: var(--white);
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.reviews__card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(198, 163, 74, 0.5);
+  box-shadow: var(--shadow-md);
+}
+
+.reviews__head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.reviews__avatar {
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border: 2px solid var(--white);
+  border-radius: 50%;
+  box-shadow: 0 6px 16px rgba(8, 43, 24, 0.22);
+  color: #ffffff;
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+
+.reviews__avatar--a {
+  background: linear-gradient(135deg, #1c5233, #2f7a4d);
+}
+
+.reviews__avatar--b {
+  background: linear-gradient(135deg, #c6a34a, #a8873a);
+}
+
+.reviews__avatar--c {
+  background: linear-gradient(135deg, #c82d61, #a51f4b);
+}
+
+.reviews__avatar--d {
+  background: linear-gradient(135deg, #123d22, #1c5233);
+}
+
+.reviews__avatar--e {
+  background: linear-gradient(135deg, #b07d2b, #8a5f1c);
+}
+
+.reviews__who {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  min-width: 0;
+  flex: 1;
+}
+
+.reviews__who strong {
+  font-size: 0.95rem;
+  color: var(--deep);
+}
+
+.reviews__who em {
+  font-style: normal;
+  font-family: var(--font-latin);
+  font-size: 0.76rem;
+  color: var(--muted);
+}
+
+.reviews__verified {
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: #e7efe2;
+  color: var(--forest);
+  font-size: 0.88rem;
+}
+
+.reviews__rate {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.reviews__stars {
+  display: inline-flex;
+  gap: 2px;
+  color: var(--gold);
+  font-size: 0.95rem;
+}
+
+.reviews__score {
+  font-family: var(--font-latin);
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--gold-dark);
+  background: var(--gold-soft);
+  padding: 2px 9px;
+  border-radius: 999px;
+}
+
+.reviews__problem {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 6px;
+  padding: 8px 12px;
+  border: 1px dashed var(--gold);
+  border-radius: var(--radius-sm);
+  background: var(--cream);
+  font-size: 0.8rem;
+  line-height: 1.55;
+  color: var(--deep);
+}
+
+.reviews__problem span {
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gold-dark);
+}
+
+.reviews__text {
+  position: relative;
+  flex: 1;
+  padding-left: 22px;
+  font-size: 0.88rem;
+  line-height: 1.78;
+  color: var(--text);
+}
+
+.reviews__quote {
+  position: absolute;
+  left: 0;
+  top: 5px;
+  font-size: 1rem;
+  color: rgba(198, 163, 74, 0.65);
+}
+
+.reviews__meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--line);
+}
+
+.reviews__product {
+  font-family: var(--font-latin);
+  font-size: 0.74rem;
+  color: var(--muted);
+}
+
+.reviews__stamp {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--forest);
+  white-space: nowrap;
+}
+
+/* ---------- रिस्पॉन्सिव ---------- */
+
+@media (max-width: 1024px) {
+  .reviews__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* मोबाइल: एक ही कॉलम — सारे 16 रिव्यू एक के नीचे एक। */
+@media (max-width: 700px) {
+  .reviews__grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 16px;
+  }
+
+  .reviews__bar {
+    width: 100%;
+    border-radius: var(--radius-md);
+  }
+
+  .reviews__card {
+    padding: 18px;
+  }
+}
+

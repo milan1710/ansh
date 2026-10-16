@@ -1,0 +1,52 @@
+import { FaPhoneAlt } from 'react-icons/fa';
+import { FiAward, FiFeather, FiTruck, FiUsers } from 'react-icons/fi';
+import siteConfig from '../../data/siteConfig.js';
+import { trackEvent } from '../../lib/pixel.js';
+import '../../components/AnnouncementBar/AnnouncementBar.css';
+
+// पुरुषों के लिए बनी वेबसाइट के सबसे ऊपर चलने वाली भरोसे की पट्टी।
+const messages = [
+  { icon: <FiAward aria-hidden="true" />, text: '100% मनी बैक गारंटी — तय नियमों एवं शर्तों के अनुसार' },
+  { icon: <FiFeather aria-hidden="true" />, text: '100% आयुर्वेदिक — 17 जड़ी-बूटियों का शुद्ध मिश्रण' },
+  { icon: <FiUsers aria-hidden="true" />, text: '3000+ पुरुषों का भरोसा' },
+  { icon: <FiTruck aria-hidden="true" />, text: 'डिस्क्रीट पैकिंग — पूरे भारत में फास्ट डिलीवरी' },
+];
+
+export default function MaleAnnouncementBar() {
+  const { contact } = siteConfig;
+  const telHref = `tel:${contact.phone.replace(/[^\d+]/g, '')}`;
+  const track = [...messages, ...messages];
+
+  return (
+    <div className="announcement">
+      <div className="announcement__marquee" aria-hidden="true">
+        <ul className="announcement__track">
+          {track.map((item, index) => (
+            <li className="announcement__item" key={`${item.text}-${index}`}>
+              <span className="announcement__icon">{item.icon}</span>
+              {item.text}
+              <span className="announcement__star">★</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <p className="announcement__sr">
+        100% मनी बैक गारंटी, 100% आयुर्वेदिक उत्पाद, 3000+ पुरुषों का भरोसा और डिस्क्रीट डिलीवरी।
+      </p>
+
+      <a
+        href={telHref}
+        className="announcement__call"
+        onClick={() => {
+          trackEvent('Contact', { method: 'phone' });
+          trackEvent('Lead', { method: 'phone' });
+        }}
+      >
+        <FaPhoneAlt aria-hidden="true" />
+        <span className="announcement__call-text">अभी बात करें</span>
+        <strong>{contact.phone}</strong>
+      </a>
+    </div>
+  );
+}

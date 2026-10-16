@@ -1,0 +1,146 @@
+.male-benefits {
+  background: #f4f6ee;
+}
+
+.male-benefits__grid {
+  display: grid;
+  grid-template-columns: 1fr 1.05fr;
+  gap: clamp(32px, 5vw, 64px);
+  align-items: center;
+  padding-block: var(--section-pad);
+}
+
+.male-benefits__photo {
+  position: relative;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  background: #e8ebdf;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.male-benefits__photo img {
+  width: 100%;
+  max-height: 480px;
+  padding: 28px;
+  object-fit: contain;
+}
+
+.male-benefits__price-badge {
+  position: absolute;
+  left: 18px;
+  bottom: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 10px 16px;
+  background: rgba(255, 255, 255, 0.96);
+  border-left: 3px solid var(--forest);
+  border-radius: 0 12px 12px 0;
+  box-shadow: var(--shadow-sm);
+}
+
+.male-benefits__price-badge strong {
+  font-family: var(--font-latin);
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--forest);
+}
+
+.male-benefits__price-badge em {
+  font-style: normal;
+  font-size: 0.72rem;
+  color: var(--muted);
+}
+
+.male-benefits__title {
+  font-size: clamp(1.8rem, 3.2vw, 2.5rem);
+  margin-top: 14px;
+  color: var(--forest);
+}
+
+.male-benefits__desc {
+  margin-top: 16px;
+  color: var(--muted);
+  font-size: 0.98rem;
+  max-width: 520px;
+}
+
+.male-benefits__features {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-top: 28px;
+}
+
+.male-benefits__features li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 16px;
+  border-radius: var(--radius-md);
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-top: 3px solid var(--forest);
+}
+
+.male-benefits__icon {
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: #e7efe2;
+  color: var(--forest);
+  font-size: 1.1rem;
+}
+
+.male-benefits__feature-text {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.male-benefits__feature-text strong {
+  font-size: 0.92rem;
+  color: var(--deep);
+}
+
+.male-benefits__feature-text em {
+  font-style: normal;
+  font-size: 0.8rem;
+  color: var(--muted);
+  line-height: 1.55;
+}
+
+.male-benefits__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 28px;
+}
+
+@media (max-width: 900px) {
+  .male-benefits__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .male-benefits__photo {
+    order: -1;
+    max-height: 380px;
+  }
+
+  .male-benefits__photo img {
+    max-height: 340px;
+    padding: 20px;
+  }
+}
+
+@media (max-width: 600px) {
+  .male-benefits__features {
+    grid-template-columns: 1fr;
+  }
+}

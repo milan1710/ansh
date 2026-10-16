@@ -1,0 +1,137 @@
+/* अन्श आयुर्वेद और सामान्य सप्लीमेंट की तुलना वाली तालिका। */
+
+.comparison {
+  background: var(--white);
+}
+
+.comparison__wrap {
+  overflow-x: auto;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: var(--white);
+  box-shadow: var(--shadow-md);
+  -webkit-overflow-scrolling: touch;
+}
+
+.comparison__table {
+  width: 100%;
+  min-width: 640px;
+  border-collapse: collapse;
+}
+
+.comparison__table th,
+.comparison__table td {
+  padding: 16px 18px;
+  text-align: left;
+  font-size: 0.9rem;
+  vertical-align: middle;
+}
+
+.comparison__table thead th {
+  background: var(--surface);
+  color: var(--deep);
+  font-size: 0.86rem;
+  font-weight: 700;
+  border-bottom: 1px solid var(--line);
+}
+
+.comparison__table tbody th {
+  font-weight: 600;
+  color: var(--deep);
+  background: #fcfbf6;
+  border-bottom: 1px solid var(--line);
+  border-right: 1px solid var(--line);
+}
+
+.comparison__table tbody td {
+  border-bottom: 1px solid var(--line);
+  color: var(--muted);
+}
+
+.comparison__table tbody tr:last-child th,
+.comparison__table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.comparison__ours-head {
+  background: linear-gradient(135deg, #123d22 0%, #1c5233 100%) !important;
+  color: #ffffff !important;
+}
+
+.comparison__brand {
+  display: block;
+  font-family: var(--font-latin);
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: var(--gold);
+}
+
+.comparison__ours-head em {
+  display: block;
+  margin-top: 2px;
+  font-style: normal;
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.comparison__ours-cell {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(28, 82, 51, 0.05);
+  color: var(--deep) !important;
+  font-weight: 600;
+}
+
+.comparison__theirs-cell {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.comparison__tick,
+.comparison__dash {
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  font-size: 0.9rem;
+}
+
+.comparison__tick {
+  background: #1c5233;
+  color: #ffffff;
+}
+
+.comparison__dash {
+  background: #efece2;
+  color: #9a9385;
+}
+
+.comparison__note {
+  margin-top: 16px;
+  text-align: center;
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+
+.comparison__cta {
+  margin-top: clamp(24px, 3.4vw, 36px);
+  text-align: center;
+}
+
+@media (max-width: 600px) {
+  .comparison__table th,
+  .comparison__table td {
+    padding: 13px 14px;
+    font-size: 0.84rem;
+  }
+
+  .comparison__cta .btn {
+    width: 100%;
+  }
+}

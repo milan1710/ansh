@@ -1,0 +1,116 @@
+/* नीचे दाईं ओर हमेशा दिखने वाले संपर्क बटन (WhatsApp, कॉल, ऑर्डर)। */
+
+.floating-actions {
+  position: fixed;
+  right: clamp(12px, 2vw, 22px);
+  bottom: calc(clamp(12px, 2vw, 22px) + env(safe-area-inset-bottom, 0px));
+  z-index: 95;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+}
+
+.floating-actions__btn {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  color: #ffffff;
+  font-size: 1.35rem;
+  box-shadow: 0 10px 24px rgba(8, 43, 24, 0.28);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+}
+
+.floating-actions__btn:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 16px 32px rgba(8, 43, 24, 0.36);
+  filter: brightness(1.05);
+}
+
+.floating-actions__btn--wa {
+  background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
+}
+
+.floating-actions__btn--call {
+  background: linear-gradient(135deg, #1c5233 0%, #123d22 100%);
+}
+
+.floating-actions__tip {
+  position: absolute;
+  right: calc(100% + 10px);
+  top: 50%;
+  transform: translateY(-50%) translateX(6px);
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: rgba(8, 43, 24, 0.94);
+  color: #ffffff;
+  font-size: 0.76rem;
+  font-weight: 600;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.floating-actions__btn:hover .floating-actions__tip,
+.floating-actions__btn:focus-visible .floating-actions__tip {
+  opacity: 1;
+  transform: translateY(-50%) translateX(0);
+}
+
+.floating-actions__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 14px 22px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 999px;
+  background: linear-gradient(135deg, #e6c766 0%, #c6a34a 100%);
+  color: #241a05;
+  font-family: var(--font-latin);
+  font-size: 0.9rem;
+  font-weight: 700;
+  white-space: nowrap;
+  box-shadow: 0 14px 30px rgba(198, 163, 74, 0.45), 0 4px 14px rgba(8, 43, 24, 0.25);
+  animation: softPulse 2.6s ease-in-out infinite;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.floating-actions__cta:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 18px 38px rgba(198, 163, 74, 0.6), 0 6px 16px rgba(8, 43, 24, 0.28);
+}
+
+.floating-actions__cta svg {
+  font-size: 1.05rem;
+}
+
+@media (max-width: 600px) {
+  .floating-actions {
+    gap: 8px;
+  }
+
+  .floating-actions__btn {
+    width: 44px;
+    height: 44px;
+    font-size: 1.15rem;
+  }
+
+  .floating-actions__tip {
+    display: none;
+  }
+
+  .floating-actions__cta {
+    padding: 12px 17px;
+    font-size: 0.82rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .floating-actions__cta {
+    animation: none;
+  }
+}

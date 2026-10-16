@@ -5,18 +5,35 @@ import { fileURLToPath } from 'node:url';
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
+
+  // मल्टी-पेज ऐप (MPA) — इससे हर HTML फ़ाइल अपने पूरे पथ पर खुलती है,
+  // जैसे `/` (मुख्य साइट) और `/ansh-male/` (पुरुषों के लिए वेबसाइट)।
+  appType: 'mpa',
+
   server: {
     port: 5173,
     open: true,
   },
-  // मुख्य पेज (index.html) के साथ-साथ थैंक यू पेज (thankyou.html) भी बिल्ड हो,
-  // इसलिए दोनों को entry के रूप में जोड़ा गया है।
+  // तीनों पेज (मुख्य, थैंक यू और पुरुषों के लिए /ansh-male) बिल्ड हों।
   build: {
     rollupOptions: {
       input: {
-        main: fileURLToPath(new URL('index.html', import.meta.url)),
-        thankyou: fileURLToPath(new URL('thankyou.html', import.meta.url)),
+        // मुख्य डोमेन — तीनों वेबसाइट में से एक चुनने का पेज
+        home: fileURLToPath(new URL('index.html', import.meta.url)),
+        // कॉम्बो वेबसाइट (/ansh-combo)
+        anshCombo: fileURLToPath(new URL('ansh-combo/index.html', import.meta.url)),
+        anshComboThankyou: fileURLToPath(
+          new URL('ansh-combo/thankyou.html', import.meta.url)
+        ),
+        // पुरुषों की वेबसाइट (/ansh-male)
+        anshMale: fileURLToPath(new URL('ansh-male/index.html', import.meta.url)),
+        // गुजराती वेबसाइट (/ansh-gujarati)
+        anshGujarati: fileURLToPath(new URL('ansh-gujarati/index.html', import.meta.url)),
+        anshGujaratiThankyou: fileURLToPath(
+          new URL('ansh-gujarati/thankyou.html', import.meta.url)
+        ),
       },
     },
   },
 });
+

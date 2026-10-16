@@ -10,14 +10,29 @@ import {
 } from 'react-icons/fi';
 import Countdown from '../Countdown/Countdown.jsx';
 import siteConfig from '../../data/siteConfig.js';
+import products from '../../data/products.js';
 import { trackEvent } from '../../lib/pixel.js';
 import './OrderForm.css';
 
-// ---- CRM फ़ॉर्म का विवरण (पहले जैसा ही — कुछ नहीं बदला गया) ----
+// ---- CRM फ़ॉर्म का विवरण ----
+// ⚠️ `key` ठीक उसी फ़ॉर्म-की के बराबर होनी चाहिए जो CRM फ़ॉर्म URL में दिखती है, तभी लीड दर्ज होती है।
+// पहले यहाँ गलत key थी (0a4560...), जिससे सबमिट होने पर भी CRM में कुछ दर्ज नहीं होता था।
 const FORM_ACTION = 'https://crm.bhoomidhara.in/forms/wtl/7818ad781e72739e372c114f14f21a16';
 const CSRF_TOKEN = '7818ad781e72739e372c114f14f21a16';
-const FORM_KEY = '0a4560520ff84434380def3822426bf8';
-const REDIRECT_URL = '/thankyou.html';
+const FORM_KEY = '7818ad781e72739e372c114f14f21a16';
+
+// सबमिट के बाद CRM इसी पते पर वापस भेजता है। CRM अलग डोमेन पर है, इसलिए यह पूरा (absolute)
+// पता होना ज़रूरी है — वरना ब्राउज़र CRM के ही डोमेन पर thank-you पेज ढूँढेगा और Lead ट्रैक नहीं होगा।
+const REDIRECT_PATH = '/ansh-combo/thankyou.html';
+
+function absoluteRedirectUrl() {
+  if (typeof window !== 'undefined' && window.location && window.location.origin) {
+    return `${window.location.origin}${REDIRECT_PATH}`;
+  }
+  return REDIRECT_PATH;
+}
+
+const combo = products.combo;
 
 // डिवाइस का प्रकार पहचानें (मूल कोड जैसा ही)।
 function detectDevice() {
@@ -56,10 +71,16 @@ export default function OrderForm() {
   const ipRef = useRef('');
   const ipInputRef = useRef(null);
   const deviceInputRef = useRef(null);
+  const redirectInputRef = useRef(null);
 
   // IP, शहर और डिवाइस की जानकारी भरें — मूल स्क्रिप्ट जैसा ही व्यवहार।
   useEffect(() => {
     let cancelled = false;
+
+    // CRM को बताएँ कि सबमिट के बाद किस पते पर वापस भेजना है (पूरा URL)।
+    if (redirectInputRef.current) {
+      redirectInputRef.current.value = absoluteRedirectUrl();
+    }
 
     fetch('https://api.ipify.org?format=json')
       .then((res) => res.json())
@@ -111,7 +132,7 @@ export default function OrderForm() {
       if (hours < 24) {
         event.preventDefault();
         alert('आप पहले ही फॉर्म सबमिट कर चुके हैं। कृपया बाद में कोशिश करें।');
-        window.location.href = REDIRECT_URL;
+        window.location.href = absoluteRedirectUrl();
         return;
       }
     }
@@ -176,11 +197,25 @@ export default function OrderForm() {
             >
               <input type="hidden" name="csrf_token_name" value={CSRF_TOKEN} readOnly />
               <input type="hidden" name="key" value={FORM_KEY} readOnly />
-              <input type="hidden" name="websites" value={REDIRECT_URL} readOnly />
+              <input
+                type="hidden"
+                name="websites"
+                ref={redirectInputRef}
+                defaultValue={REDIRECT_PATH}
+              />
 
               {/* IP और डिवाइस की जानकारी के लिए छिपे फ़ील्ड */}
               <input type="hidden" name="email" id="ipAddress" ref={ipInputRef} />
               <input type="hidden" name="company" id="deviceDetails" ref={deviceInputRef} />
+
+              {/* CRM में यह साफ़ दिखे कि कौन-सा उत्पाद और कितनी कीमत की लीड है */}
+              <input
+                type="hidden"
+                name="product"
+                value={`${combo.name} — ${combo.packSize}`}
+                readOnly
+              />
+              <input type="hidden" name="price" value={combo.price} readOnly />
 
               <div className="order-form__field">
                 <label htmlFor="order-name">पूरा नाम</label>

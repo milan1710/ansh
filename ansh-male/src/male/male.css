@@ -1,0 +1,985 @@
+/* ==========================================================================
+   Ansh Ayurveda For Men — /ansh-male
+   प्रीमियम स्टाइलशीट
+   --------------------------------------------------------------------------
+   यह फ़ाइल मुख्य वेबसाइट के design tokens (src/index.css) और shared layout
+   primitives (src/App.css) के ऊपर लगती है, और पुरुषों की वेबसाइट को साफ़,
+   आधुनिक और "Shopify जैसा" प्रीमियम लुक देती है।
+
+   इसमें सबसे ज़रूरी हिस्सा — "हिंदी टाइपोग्राफ़ी सुधार" है, क्योंकि मुख्य
+   साइट की CSS में कहीं-कहीं `uppercase` और बहुत ज़्यादा letter-spacing है,
+   जो देवनागरी (हिंदी) लिखावट पर भद्दा लगता है।
+   ========================================================================== */
+
+/* ============================ 1. लोकल टोकन ============================ */
+
+:root {
+  --m-gold-line: rgba(198, 163, 74, 0.42);
+  --m-deep-grad: linear-gradient(150deg, #061f12 0%, #113a21 52%, #1c5233 100%);
+  --m-gold-grad: linear-gradient(135deg, #e6c766 0%, #c6a34a 100%);
+  --m-ring: 0 0 0 4px rgba(198, 163, 74, 0.26);
+  --m-shadow-xl: 0 30px 70px rgba(8, 43, 24, 0.18);
+  --m-radius-xl: 30px;
+  --m-section-pad: clamp(56px, 8vw, 96px);
+}
+
+/* ============================ 2. ग्लोबल पॉलिश ============================ */
+
+::selection {
+  background: rgba(198, 163, 74, 0.35);
+  color: var(--deep);
+}
+
+h1,
+h2,
+h3,
+h4 {
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+/* बटन को थोड़ा और प्रीमियम बनाएँ */
+.btn {
+  letter-spacing: 0.01em;
+  box-shadow: 0 6px 16px rgba(18, 61, 34, 0.08);
+}
+
+.btn--primary {
+  background: linear-gradient(135deg, #1c5233 0%, #123d22 100%);
+}
+
+.btn--gold {
+  background: var(--m-gold-grad);
+  box-shadow: 0 12px 26px rgba(198, 163, 74, 0.35);
+}
+
+.btn--gold:hover {
+  background: var(--m-gold-grad);
+  color: #241a05;
+  filter: brightness(1.04);
+}
+
+.btn--outline {
+  background: rgba(255, 255, 255, 0.7);
+  box-shadow: none;
+}
+
+/* ==================== 3. हिंदी टाइपोग्राफ़ी सुधार ==================== */
+
+.eyebrow {
+  gap: 10px;
+  padding: 6px 16px;
+  font-family: var(--font-body);
+  font-size: 0.84rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  text-transform: none;
+  border: 1px solid var(--m-gold-line);
+  border-radius: 999px;
+  background: linear-gradient(180deg, #fffdf6 0%, var(--cream) 100%);
+  box-shadow: 0 3px 10px rgba(198, 163, 74, 0.16);
+}
+
+.eyebrow::before {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--gold);
+  box-shadow: 0 0 0 3px rgba(198, 163, 74, 0.22);
+}
+
+.section-head .section-subtitle {
+  font-size: 1.02rem;
+  line-height: 1.75;
+}
+
+.header__brand-text em {
+  font-family: var(--font-body);
+  font-size: 0.74rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: none;
+}
+
+.countdown__unit em {
+  font-size: 0.66rem;
+  letter-spacing: 0.01em;
+  text-transform: none;
+}
+
+.comparison__ours-head em {
+  font-size: 0.76rem;
+  letter-spacing: 0.02em;
+  text-transform: none;
+}
+
+.reviews__problem span {
+  font-size: 0.72rem;
+  letter-spacing: 0.02em;
+  text-transform: none;
+}
+
+/* ============================ 4. Announcement ============================ */
+
+.announcement {
+  background: linear-gradient(90deg, #082b18 0%, #123d22 48%, #1c5233 100%);
+  border-bottom: 1px solid rgba(198, 163, 74, 0.22);
+}
+
+.announcement__item {
+  letter-spacing: 0.005em;
+}
+
+.announcement__call {
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+/* ============================ 5. Header ============================ */
+
+.header__menu a {
+  font-weight: 600;
+}
+
+.header__cta {
+  box-shadow: 0 8px 20px rgba(198, 163, 74, 0.32);
+}
+
+.header__brand img {
+  filter: drop-shadow(0 4px 10px rgba(18, 61, 34, 0.14));
+}
+
+/* ============================ 6. Hero ============================ */
+
+.hero {
+  background:
+    radial-gradient(ellipse at 86% 12%, rgba(198, 163, 74, 0.2), transparent 38%),
+    radial-gradient(ellipse at 2% 92%, rgba(18, 61, 34, 0.14), transparent 42%),
+    linear-gradient(140deg, #fffdf5 0%, #f8f6ea 50%, #eef3e8 100%);
+}
+
+.hero__title {
+  font-size: clamp(2.2rem, 4.6vw, 3.7rem);
+  line-height: 1.16;
+  letter-spacing: -0.02em;
+}
+
+.hero__title span {
+  margin-top: 6px;
+}
+
+.hero__lead {
+  font-size: clamp(1rem, 1.4vw, 1.14rem);
+  line-height: 1.8;
+}
+
+.hero__rating {
+  gap: 8px 14px;
+  padding: 10px 18px;
+  border-color: var(--m-gold-line);
+  background: rgba(255, 255, 255, 0.86);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.hero__trust li {
+  background: rgba(255, 255, 255, 0.86);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+.hero__frame {
+  box-shadow: var(--m-shadow-xl);
+}
+
+.hero__float {
+  box-shadow: 0 16px 34px rgba(8, 43, 24, 0.16);
+}
+
+.hero__actions .btn--primary {
+  box-shadow: 0 14px 30px rgba(18, 61, 34, 0.26);
+}
+
+/* ============================ 7. TrustBar ============================ */
+
+.trustbar {
+  background: linear-gradient(180deg, var(--cream) 0%, #ffffff 100%);
+}
+
+.trustbar__item {
+  padding: 8px 10px;
+  border-radius: var(--radius-md);
+  transition: transform 0.25s ease, background-color 0.25s ease;
+}
+
+.trustbar__item:hover {
+  transform: translateY(-3px);
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.trustbar__icon {
+  background: linear-gradient(135deg, #1c5233 0%, #123d22 100%);
+  box-shadow: 0 8px 18px rgba(18, 61, 34, 0.22);
+}
+
+/* ============================ 8. Stats ============================ */
+
+.stats {
+  background: var(--m-deep-grad);
+  border-block: 1px solid rgba(198, 163, 74, 0.18);
+}
+
+.stats__icon {
+  box-shadow: inset 0 0 0 1px rgba(198, 163, 74, 0.25);
+  transition: transform 0.3s ease;
+}
+
+.stats__item:hover .stats__icon {
+  transform: translateY(-4px) scale(1.04);
+}
+
+.stats__value {
+  letter-spacing: -0.02em;
+}
+
+/* ============================ 9. समस्याएँ ============================ */
+
+.problem-picker {
+  background: linear-gradient(180deg, #ffffff 0%, #fbfaf4 100%);
+}
+
+.problem-picker__chip {
+  border-left: 3px solid transparent;
+}
+
+.problem-picker__chip:hover {
+  border-left-color: var(--gold);
+}
+
+.problem-picker__chip--active {
+  border-left-color: var(--forest);
+}
+
+.problem-picker__result {
+  box-shadow: var(--m-shadow-xl);
+  overflow: hidden;
+}
+
+.problem-picker__result::after {
+  content: '';
+  position: absolute;
+  inset: auto -40px -60px auto;
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  background: rgba(198, 163, 74, 0.16);
+  filter: blur(40px);
+  pointer-events: none;
+}
+
+.problem-picker__result-title {
+  letter-spacing: -0.01em;
+}
+
+/* ============================ 10. उत्पाद परिचय ============================ */
+
+.male-benefits {
+  background: linear-gradient(180deg, #f4f6ee 0%, #eef3e8 100%);
+}
+
+.male-benefits__photo {
+  border: 1px solid var(--line);
+  box-shadow: var(--m-shadow-xl);
+}
+
+.male-benefits__price-badge {
+  border-left-width: 4px;
+  box-shadow: 0 14px 30px rgba(8, 43, 24, 0.16);
+}
+
+.male-benefits__features li {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.male-benefits__features li:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+}
+
+.male-benefits__icon {
+  background: linear-gradient(135deg, #e7efe2 0%, #d9e7d0 100%);
+}
+
+/* ============================ 11. पूरे फायदे ============================ */
+
+.m-benefits {
+  background: var(--white);
+}
+
+.m-benefits__list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  max-width: 920px;
+  margin-inline: auto;
+}
+
+.m-benefits__list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 16px 18px;
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--forest);
+  border-radius: var(--radius-md);
+  background: var(--cream);
+  font-size: 0.94rem;
+  color: var(--deep);
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.m-benefits__list li:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+}
+
+.m-benefits__list svg {
+  flex-shrink: 0;
+  margin-top: 3px;
+  color: var(--forest);
+  font-size: 1.15rem;
+}
+
+.m-benefits__cta {
+  margin-top: clamp(26px, 3.6vw, 38px);
+  text-align: center;
+}
+
+@media (max-width: 700px) {
+  .m-benefits__list {
+    grid-template-columns: 1fr;
+  }
+
+  .m-benefits__cta .btn {
+    width: 100%;
+  }
+}
+
+/* ==================== 12. Shopify-जैसा उत्पाद बाय-बॉक्स ==================== */
+
+.offer {
+  position: relative;
+  background:
+    radial-gradient(ellipse at 100% 0%, rgba(198, 163, 74, 0.12), transparent 42%),
+    linear-gradient(180deg, #ffffff 0%, #fbfaf4 100%);
+}
+
+/* यह अब पेज का सबसे ऊपरी (hero) सेक्शन है — इसलिए इसे थोड़ा और
+   बड़ा और प्रमुख बनाया गया है, बिल्कुल Shopify product पेज की तरह। */
+.offer {
+  padding-top: clamp(34px, 5vw, 62px);
+}
+
+.offer .section-head {
+  margin-bottom: clamp(26px, 3.6vw, 40px);
+}
+
+.offer .section-head .section-title {
+  font-size: clamp(1.9rem, 3.8vw, 2.9rem);
+  letter-spacing: -0.025em;
+}
+
+.offer .section-head .eyebrow {
+  font-size: 0.86rem;
+}
+
+.offer__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(26px, 4vw, 56px);
+  align-items: start;
+}
+
+/* ---------- तस्वीरों की गैलरी ---------- */
+.offer__gallery {
+  display: grid;
+  gap: 14px;
+  position: sticky;
+  top: calc(var(--header-h) + 24px);
+}
+
+.offer__main {
+  position: relative;
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--m-radius-xl);
+  background: linear-gradient(160deg, #f6f9f1 0%, #ffffff 100%);
+  box-shadow: var(--m-shadow-xl);
+}
+
+.offer__main img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: contain;
+  padding: clamp(18px, 4vw, 40px);
+  transition: transform 0.5s ease;
+}
+
+.offer__main:hover img {
+  transform: scale(1.03);
+}
+
+.offer__flag {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  z-index: 1;
+  padding: 7px 14px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #c82d61 0%, #a51f4b 100%);
+  color: #ffffff;
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  box-shadow: 0 10px 22px rgba(168, 31, 75, 0.32);
+}
+
+.offer__thumbs {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.offer__thumb {
+  padding: 0;
+  overflow: hidden;
+  border: 2px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: #f6f9f1;
+  cursor: pointer;
+  transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.offer__thumb:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
+}
+
+.offer__thumb--active {
+  border-color: var(--forest);
+  box-shadow: var(--m-ring);
+}
+
+.offer__thumb img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: contain;
+  padding: 8px;
+}
+
+/* ---------- जानकारी ---------- */
+.offer__info {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.offer__title {
+  font-size: clamp(1.7rem, 3vw, 2.3rem);
+  letter-spacing: -0.02em;
+  color: var(--forest);
+}
+
+.offer__sub {
+  margin-top: 4px;
+  font-size: 0.95rem;
+  color: var(--muted);
+}
+
+.offer__rating {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px 10px;
+  width: fit-content;
+  padding: 7px 16px;
+  border: 1px solid var(--m-gold-line);
+  border-radius: 999px;
+  background: var(--cream);
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.offer__stars {
+  display: inline-flex;
+  gap: 2px;
+  color: var(--gold);
+  font-size: 0.95rem;
+}
+
+.offer__rating strong {
+  font-family: var(--font-latin);
+  color: var(--forest);
+}
+
+/* ---------- कीमत ---------- */
+.offer__price-box {
+  padding: 20px 22px;
+  border: 1px solid var(--m-gold-line);
+  border-radius: var(--radius-md);
+  background:
+    radial-gradient(circle at 92% 12%, rgba(198, 163, 74, 0.16), transparent 46%),
+    linear-gradient(140deg, #fffdf6 0%, var(--cream) 100%);
+  box-shadow: var(--shadow-sm);
+}
+
+.offer__prices {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 10px 14px;
+}
+
+.offer__price {
+  font-family: var(--font-latin);
+  font-size: clamp(1.9rem, 4vw, 2.4rem);
+  font-weight: 800;
+  line-height: 1;
+  color: var(--forest);
+}
+
+.offer__mrp {
+  font-family: var(--font-latin);
+  font-size: 1.05rem;
+  color: var(--muted);
+  text-decoration: line-through;
+}
+
+.offer__save {
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: #e7efe2;
+  color: #1c5233;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.offer__perday {
+  margin-top: 8px;
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+
+/* ---------- कोर्स चुनें ---------- */
+.offer__pack {
+  display: grid;
+  gap: 10px;
+}
+
+.offer__pack-label {
+  font-size: 0.84rem;
+  font-weight: 700;
+  color: var(--deep);
+}
+
+.offer__pack-options {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.offer__pack-option {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 12px 8px;
+  border: 2px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--white);
+  text-align: center;
+  transition: border-color 0.2s ease, background-color 0.2s ease, transform 0.2s ease;
+}
+
+.offer__pack-option:hover {
+  transform: translateY(-2px);
+  border-color: var(--gold);
+}
+
+.offer__pack-option strong {
+  font-size: 0.9rem;
+  color: var(--deep);
+}
+
+.offer__pack-option em {
+  font-style: normal;
+  font-family: var(--font-latin);
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--forest);
+}
+
+.offer__pack-option--active {
+  border-color: var(--forest);
+  background: #f2f7ee;
+  box-shadow: var(--m-ring);
+}
+
+/* ---------- मात्रा ---------- */
+.offer__qty {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.offer__qty-label {
+  font-size: 0.84rem;
+  font-weight: 700;
+  color: var(--deep);
+}
+
+.offer__qty-control {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  overflow: hidden;
+  background: var(--white);
+  box-shadow: var(--shadow-sm);
+}
+
+.offer__qty-control button {
+  width: 44px;
+  height: 44px;
+  border: 0;
+  background: transparent;
+  color: var(--forest);
+  font-size: 1.2rem;
+  line-height: 1;
+  transition: background-color 0.2s ease;
+}
+
+.offer__qty-control button:hover:not(:disabled) {
+  background: var(--cream);
+}
+
+.offer__qty-control button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.offer__qty-control span {
+  min-width: 46px;
+  text-align: center;
+  font-family: var(--font-latin);
+  font-weight: 700;
+  color: var(--deep);
+}
+
+/* ---------- फायदे व CTA ---------- */
+.offer__benefits {
+  display: grid;
+  gap: 10px;
+  padding-top: 16px;
+  border-top: 1px dashed var(--line);
+}
+
+.offer__benefits li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 0.9rem;
+  color: var(--deep);
+}
+
+.offer__benefits svg {
+  flex-shrink: 0;
+  margin-top: 3px;
+  color: var(--forest);
+  font-size: 1.05rem;
+}
+
+.offer__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.offer__actions .btn--gold {
+  flex: 1;
+  min-width: 240px;
+}
+
+.offer__trust {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 4px;
+}
+
+.offer__trust li {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--deep);
+}
+
+.offer__trust svg {
+  flex-shrink: 0;
+  color: var(--gold-dark);
+  font-size: 1.05rem;
+}
+
+@media (max-width: 900px) {
+  .offer__grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .offer__gallery {
+    position: static;
+  }
+}
+
+@media (max-width: 600px) {
+  .offer__pack-options {
+    grid-template-columns: 1fr;
+  }
+
+  .offer__trust {
+    grid-template-columns: 1fr;
+  }
+
+  .offer__actions .btn {
+    width: 100%;
+  }
+}
+
+/* ==================== 13. ऑर्डर फ़ॉर्म (शहर / पिन कोड row) ==================== */
+
+.order-form__row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+@media (max-width: 520px) {
+  .order-form__row {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ============================ 14. कैसे काम करता है ============================ */
+
+.how-it-works {
+  background: linear-gradient(180deg, var(--cream) 0%, #ffffff 100%);
+}
+
+.how-it-works__step {
+  border-top: 4px solid var(--forest);
+}
+
+.how-it-works__icon {
+  background: linear-gradient(135deg, #1c5233 0%, #123d22 100%);
+  box-shadow: 0 12px 26px rgba(18, 61, 34, 0.26);
+}
+
+.how-it-works__number {
+  box-shadow: 0 4px 10px rgba(198, 163, 74, 0.28);
+}
+
+/* ============================ 15. तुलना ============================ */
+
+.comparison {
+  background: linear-gradient(180deg, #ffffff 0%, #f8faf5 100%);
+}
+
+.comparison__wrap {
+  box-shadow: var(--m-shadow-xl);
+}
+
+.comparison__table thead th {
+  padding-block: 18px;
+  font-size: 0.9rem;
+}
+
+.comparison__ours-head {
+  background: var(--m-deep-grad) !important;
+}
+
+.comparison__ours-cell {
+  background: rgba(28, 82, 51, 0.07);
+}
+
+.comparison__tick {
+  background: linear-gradient(135deg, #1c5233 0%, #123d22 100%);
+}
+
+/* ============================ 16. आयुर्वेद विशेषज्ञ ============================ */
+
+.doctor {
+  background: linear-gradient(180deg, #ffffff 0%, #f2f6ee 100%);
+}
+
+.doctor__frame {
+  box-shadow: var(--m-shadow-xl);
+}
+
+.doctor__badge {
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+.doctor__cred-icon {
+  background: linear-gradient(135deg, #e7efe2 0%, #d9e7d0 100%);
+}
+
+/* ============================ 17. भरोसे के स्तंभ ============================ */
+
+.trust-pillars {
+  background: linear-gradient(180deg, #f2f6ee 0%, #ffffff 100%);
+}
+
+.trust-pillars__icon {
+  background: linear-gradient(135deg, #1c5233 0%, #123d22 100%);
+  box-shadow: 0 12px 24px rgba(18, 61, 34, 0.24);
+}
+
+.trust-pillars__seal {
+  box-shadow: var(--m-shadow-xl);
+}
+
+/* ============================ 18. समीक्षाएँ ============================ */
+
+.reviews {
+  background: linear-gradient(180deg, #ffffff 0%, var(--cream) 100%);
+}
+
+.reviews__card {
+  border-top: 3px solid transparent;
+}
+
+.reviews__card:hover {
+  border-top-color: var(--gold);
+}
+
+.reviews__bar {
+  box-shadow: 0 10px 26px rgba(18, 61, 34, 0.1);
+}
+
+.reviews__avatar {
+  box-shadow: 0 8px 18px rgba(8, 43, 24, 0.24);
+}
+
+/* ============================ 19. खुश ग्राहक गैलरी ============================ */
+
+.gallery {
+  background: linear-gradient(180deg, var(--cream) 0%, #ffffff 100%);
+}
+
+.gallery__item {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.gallery__item:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--m-shadow-xl);
+}
+
+/* ============================ 20. ऑर्डर फ़ॉर्म ============================ */
+
+.order-form__card {
+  border: 1px solid var(--m-gold-line);
+  border-radius: var(--m-radius-xl);
+  box-shadow: var(--m-shadow-xl);
+}
+
+.order-form__urgency {
+  background: var(--m-deep-grad);
+}
+
+.order-input {
+  border-radius: 12px;
+}
+
+.order-input:focus {
+  border-color: var(--forest);
+  box-shadow: var(--m-ring);
+}
+
+.order-form__side {
+  background: linear-gradient(180deg, var(--cream) 0%, #ffffff 100%);
+}
+
+.order-form__submit {
+  box-shadow: 0 14px 30px rgba(198, 163, 74, 0.4);
+}
+
+/* ============================ 21. FAQ ============================ */
+
+.faq__item--open .faq__question {
+  font-weight: 700;
+}
+
+.faq__question {
+  transition: color 0.2s ease, padding-left 0.2s ease;
+}
+
+.faq__question:hover {
+  padding-left: 6px;
+}
+
+/* ============================ 22. फुटर ============================ */
+
+.footer {
+  background: linear-gradient(180deg, #082b18 0%, #061f12 100%);
+  border-top: 3px solid var(--gold);
+}
+
+.footer__col h3 {
+  letter-spacing: 0.01em;
+}
+
+/* ============================ 23. फ्लोटिंग बटन ============================ */
+
+.floating-actions__cta {
+  box-shadow: 0 14px 30px rgba(198, 163, 74, 0.5), 0 4px 14px rgba(8, 43, 24, 0.25);
+}
+
+/* ============================ 24. अंतिम रिस्पॉन्सिव ============================ */
+
+@media (max-width: 1024px) {
+  .stats__list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .eyebrow {
+    font-size: 0.78rem;
+    padding: 5px 13px;
+  }
+
+  .section-head .section-subtitle {
+    font-size: 0.95rem;
+  }
+
+  .offer__price {
+    font-size: 2rem;
+  }
+}
+
+
+
+

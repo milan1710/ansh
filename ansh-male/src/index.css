@@ -1,0 +1,249 @@
+:root {
+  --forest: #123d22;
+  --deep: #082b18;
+  --green-mid: #1c5233;
+  --gold: #c6a34a;
+  --gold-dark: #a8873a;
+  --gold-soft: #efe4c8;
+  --cream: #fff9eb;
+  --white: #ffffff;
+  --pink: #c82d61;
+  --pink-dark: #a51f4b;
+  --pink-light: #fce8ef;
+  --text: #242824;
+  --muted: #5e665e;
+  --line: #e8e4d6;
+  --surface: #f7f4ea;
+
+  --font-body: 'Noto Sans Devanagari', 'Poppins', system-ui, -apple-system, sans-serif;
+  --font-display: 'Noto Sans Devanagari', 'Poppins', sans-serif;
+  --font-latin: 'Poppins', 'Noto Sans Devanagari', sans-serif;
+
+  --shadow-sm: 0 2px 10px rgba(18, 61, 34, 0.06);
+  --shadow-md: 0 12px 30px rgba(18, 61, 34, 0.1);
+  --shadow-lg: 0 24px 60px rgba(8, 43, 24, 0.16);
+
+  --radius-sm: 10px;
+  --radius-md: 18px;
+  --radius-lg: 26px;
+
+  --header-h: 78px;
+
+  /* सभी सेक्शन का vertical padding — मोबाइल पर यह कम हो जाता है
+     ताकि सेक्शन के बीच बेवजह बड़ी खाली जगह न बने। */
+  --section-pad: clamp(64px, 9vw, 104px);
+}
+
+@media (max-width: 640px) {
+  :root {
+    --section-pad: clamp(38px, 9vw, 54px);
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--header-h) + 18px);
+  -webkit-text-size-adjust: 100%;
+  /* स्क्रॉल-रिवील एनिमेशन से पैदा होने वाला क्षैतिज ओवरफ़्लो रोकें।
+     `clip` (hidden के विपरीत) sticky हेडर को प्रभावित नहीं करता। */
+  overflow-x: clip;
+}
+
+body {
+  margin: 0;
+  background: var(--white);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  margin: 0;
+  line-height: 1.25;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--deep);
+}
+
+p {
+  margin: 0;
+}
+
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+:focus-visible {
+  outline: 3px solid var(--gold);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* स्क्रीन रीडर के लिए */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ---------- स्क्रॉल पर दिखने वाला एनिमेशन ---------- */
+/* ध्यान दें: कंटेंट सिर्फ़ तब छिपाया जाता है जब JS ने <html> पर `.js-reveal`
+   लगाया हो। अगर JS किसी भी कारण से न चले या गड़बड़ हो, तो `.js-reveal`
+   लगेगा ही नहीं और सारा कंटेंट सामान्य रूप से दिखेगा — कभी खाली जगह नहीं बनेगी। */
+
+/* हर ब्लॉक नीचे से ऊपर की ओर उठता हुआ आता है — इससे स्क्रॉल करते समय पेज जीवंत लगता है।
+   `data-reveal` के मान (left / right / zoom) सिर्फ़ गति में थोड़ा फ़र्क लाते हैं —
+   दिशा हमेशा नीचे से ऊपर ही रहती है, ताकि पूरी वेबसाइट में एक जैसा सुंदर एहसास रहे। */
+.js-reveal [data-reveal] {
+  opacity: 0;
+  transform: translate3d(0, 44px, 0);
+  transition:
+    opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* हल्की-सी ऊँचाई का अंतर — इससे एक ही screen पर आते ब्लॉक एक जैसे नहीं लगते। */
+.js-reveal [data-reveal='left'] {
+  transform: translate3d(0, 30px, 0);
+}
+
+.js-reveal [data-reveal='right'] {
+  transform: translate3d(0, 54px, 0);
+}
+
+.js-reveal [data-reveal='zoom'] {
+  transform: translate3d(0, 54px, 0) scale(0.95);
+}
+
+.js-reveal [data-reveal].is-revealed {
+  opacity: 1;
+  transform: none;
+}
+
+/* ---------- साझा एनिमेशन ---------- */
+
+@keyframes floatY {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+@keyframes softPulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(198, 163, 74, 0.55);
+  }
+  50% {
+    box-shadow: 0 0 0 12px rgba(198, 163, 74, 0);
+  }
+}
+
+@keyframes marqueeX {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes gradientPan {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+/* टेक्स्ट के ऊपर धीमी चमक (skeleton नहीं, सिर्फ़ हल्की शाइन)। */
+.shine-text {
+  background: linear-gradient(100deg, var(--forest) 30%, var(--gold-dark) 50%, var(--forest) 70%);
+  background-size: 220% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: gradientPan 7s ease-in-out infinite;
+}
+
+/* कार्ड पर हल्का animation — ज़रूरत पड़ने पर किसी भी ब्लॉक पर लगाएँ। */
+.float-slow {
+  animation: floatY 6s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  [data-reveal] {
+    opacity: 1;
+    transform: none;
+  }
+
+  .js-reveal [data-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .shine-text {
+    color: var(--forest);
+    -webkit-text-fill-color: var(--forest);
+    animation: none;
+  }
+}

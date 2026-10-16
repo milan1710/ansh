@@ -1,0 +1,144 @@
+/* महिलाओं के उत्पाद के प्रजनन सेहत से जुड़े फायदे। */
+
+.fertility {
+  background: linear-gradient(180deg, var(--pink-light) 0%, #fdf7f0 55%, var(--cream) 100%);
+}
+
+/* ---------- मुख्य फायदे (pills) ---------- */
+
+.fertility__highlights {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: clamp(30px, 4vw, 44px);
+}
+
+.fertility__highlight {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 18px 10px 10px;
+  border: 1px solid #f3dbe4;
+  border-radius: 999px;
+  background: var(--white);
+  box-shadow: var(--shadow-sm);
+  font-size: 0.86rem;
+  font-weight: 600;
+  color: var(--pink-dark);
+}
+
+.fertility__highlight-icon {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--pink-light);
+  color: var(--pink-dark);
+  font-size: 0.95rem;
+}
+
+/* ---------- विस्तृत फायदे (cards) ---------- */
+
+.fertility__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.fertility__card {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 18px;
+  border: 1px solid #f3dbe4;
+  border-left: 4px solid var(--pink);
+  border-radius: var(--radius-md);
+  background: var(--white);
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.fertility__card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+}
+
+.fertility__icon {
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--pink) 0%, var(--pink-dark) 100%);
+  color: #ffffff;
+  font-size: 1.15rem;
+  box-shadow: 0 8px 18px rgba(200, 45, 97, 0.28);
+}
+
+.fertility__text {
+  font-size: 0.9rem;
+  line-height: 1.65;
+  color: var(--text);
+}
+
+/* ---------- नीचे का CTA ---------- */
+
+.fertility__cta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px 24px;
+  margin-top: clamp(30px, 4vw, 44px);
+  padding: 22px 26px;
+  border: 1px solid #f3dbe4;
+  border-radius: var(--radius-lg);
+  background: var(--white);
+  box-shadow: var(--shadow-sm);
+}
+
+.fertility__cta p {
+  max-width: 520px;
+  font-size: 0.94rem;
+  color: var(--deep);
+}
+
+.fertility__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+/* ---------- रिस्पॉन्सिव ---------- */
+
+@media (max-width: 1024px) {
+  .fertility__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 700px) {
+  .fertility__grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 14px;
+  }
+
+  .fertility__highlight {
+    width: 100%;
+  }
+
+  .fertility__cta {
+    padding: 20px;
+  }
+
+  .fertility__actions {
+    width: 100%;
+  }
+
+  .fertility__actions .btn {
+    width: 100%;
+  }
+}

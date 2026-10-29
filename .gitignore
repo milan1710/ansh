@@ -6,6 +6,7 @@ dist-ssr
 .env
 .env.*
 !.env.example
+.meta-lead-data
 .DS_Store
 npm-debug.log*
 _bottom.jpg

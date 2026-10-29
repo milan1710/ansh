@@ -306,19 +306,91 @@
           return !value || value.indexOf('%') !== -1 ? fallback : value;
         }
 
-        function trackLead(method) {
-          if (typeof window.fbq === 'function') {
-            window.fbq('track', 'Contact', { method: method });
-            window.fbq('track', 'Lead', { method: method });
+        // ---------------------------------------------------------------
+        // Meta Conversions API — Lead
+        // यह event सिर्फ़ तब जाता है जब फ़ॉर्म सबमिट होकर यह पेज खुला हो।
+        // सीधे URL खोलने पर कोई event नहीं बनता। वही event_id बार-बार आने पर
+        // backend उसे एक ही बार Meta तक भेजता है (idempotent)।
+        // ---------------------------------------------------------------
+        var META_LEAD_ENDPOINT = '/api/meta-lead';
+        var STORAGE_KEY = 'ansh_meta_lead_event';
+        var UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
+        var RETRY_DELAYS = [0, 700, 1500, 3000];
+
+        function readEventId() {
+          try {
+            var fromUrl = new URLSearchParams(window.location.search).get('eid') || '';
+            if (UUID_RE.test(fromUrl)) return fromUrl;
+          } catch (error) {
+            /* URL parsing fail — sessionStorage देखें */
+          }
+          try {
+            var raw = window.sessionStorage.getItem(STORAGE_KEY);
+            if (!raw) return '';
+            var parsed = JSON.parse(raw);
+            return parsed && UUID_RE.test(parsed.eventId || '') ? parsed.eventId : '';
+          } catch (error) {
+            return '';
           }
         }
 
-        // धन्यवाद पेज पर पहुँचते ही यह Lead के रूप में गिना जाए।
-        if (typeof window.fbq === 'function') {
-          window.fbq('track', 'Lead', {
-            content_name: 'Order Form',
-            content_category: 'Ansh Ayurveda',
-          });
+        function rememberEventId(eventId) {
+          try {
+            window.sessionStorage.setItem(
+              STORAGE_KEY,
+              JSON.stringify({ eventId: eventId, createdAt: Date.now() })
+            );
+          } catch (error) {
+            /* sessionStorage उपलब्ध न हो तो URL का eid काफ़ी है */
+          }
+        }
+
+        function confirmWithRetry(eventId, attempt) {
+          if (attempt >= RETRY_DELAYS.length) return;
+
+          window.setTimeout(function () {
+            fetch(META_LEAD_ENDPOINT, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ action: 'confirm', event_id: eventId }),
+              credentials: 'same-origin',
+              cache: 'no-store',
+            })
+              .then(function (response) {
+                return response.json();
+              })
+              .then(function (data) {
+                var status = data && data.status;
+                // beacon server तक देर से पहुँच सकता है — तभी दोबारा कोशिश।
+                if (status === 'not_found' && attempt < RETRY_DELAYS.length - 1) {
+                  confirmWithRetry(eventId, attempt + 1);
+                }
+              })
+              .catch(function () {
+                // tracking fail होने पर भी thank-you पेज पूरी तरह काम करता रहेगा।
+              });
+          }, RETRY_DELAYS[attempt]);
+        }
+
+        var metaLeadEventId = readEventId();
+        if (metaLeadEventId) {
+          rememberEventId(metaLeadEventId);
+
+          // Browser Pixel — वही event_name और वही event_id, ताकि Meta
+          // server-side event को इसके साथ deduplicate कर सके।
+          if (typeof window.fbq === 'function') {
+            window.fbq(
+              'track',
+              'Lead',
+              {
+                content_name: 'Order Form',
+                content_category: 'Ansh Ayurveda',
+              },
+              { eventID: metaLeadEventId }
+            );
+          }
+
+          confirmWithRetry(metaLeadEventId, 0);
         }
 
         var phone = envValue('%VITE_PHONE_NUMBER%', '+91 70413 05592');
@@ -334,12 +406,18 @@
           '?text=' +
           encodeURIComponent('नमस्ते अन्श आयुर्वेद, मैंने ऑर्डर फ़ॉर्म भरा है। मुझे जानकारी चाहिए।');
 
-        // कॉल / WhatsApp क्लिक भी Lead के रूप में गिना जाए।
+        // कॉल / WhatsApp क्लिक — Contact interaction, नई Lead नहीं।
+        function trackContact(method) {
+          if (typeof window.fbq === 'function') {
+            window.fbq('track', 'Contact', { method: method });
+          }
+        }
+
         callBtn.addEventListener('click', function () {
-          trackLead('phone');
+          trackContact('phone');
         });
         waBtn.addEventListener('click', function () {
-          trackLead('whatsapp');
+          trackContact('whatsapp');
         });
       })();
     </script>

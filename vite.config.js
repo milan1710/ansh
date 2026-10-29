@@ -1,10 +1,19 @@
-import { defineConfig } from 'vite';
+import { defineConfig, loadEnv } from 'vite';
 import react from '@vitejs/plugin-react';
 import { fileURLToPath } from 'node:url';
+import { metaLeadApiPlugin } from './server/vitePlugin.mjs';
 
 // https://vitejs.dev/config/
-export default defineConfig({
-  plugins: [react()],
+export default defineConfig(({ mode }) => {
+  // Dev में .env की server-side values (META_PIXEL_ID, META_ACCESS_TOKEN ...)
+  // process.env में उपलब्ध कराएँ — ये browser bundle में कभी नहीं जातीं।
+  const env = loadEnv(mode, process.cwd(), '');
+  for (const key of Object.keys(env)) {
+    if (process.env[key] === undefined) process.env[key] = env[key];
+  }
+
+  return {
+  plugins: [react(), metaLeadApiPlugin()],
 
   // मल्टी-पेज ऐप (MPA) — इससे हर HTML फ़ाइल अपने पूरे पथ पर खुलती है,
   // जैसे `/` (मुख्य साइट) और `/ansh-male/` (पुरुषों के लिए वेबसाइट)।
@@ -35,5 +44,6 @@ export default defineConfig({
       },
     },
   },
+  };
 });
 

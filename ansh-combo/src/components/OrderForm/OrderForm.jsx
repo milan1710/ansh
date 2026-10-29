@@ -12,6 +12,12 @@ import Countdown from '../Countdown/Countdown.jsx';
 import siteConfig from '../../data/siteConfig.js';
 import products from '../../data/products.js';
 import { trackEvent } from '../../lib/pixel.js';
+import {
+  createEventId,
+  rememberLeadEvent,
+  clearRememberedLeadEvent,
+  sendLeadIntent,
+} from '../../lib/metaLead.js';
 import './OrderForm.css';
 
 // ---- CRM फ़ॉर्म का विवरण ----
@@ -30,6 +36,14 @@ function absoluteRedirectUrl() {
     return `${window.location.origin}${REDIRECT_PATH}`;
   }
   return REDIRECT_PATH;
+}
+
+// Thank-you पेज को सिर्फ़ एक non-sensitive event_id भेजा जाता है — कोई email,
+// फ़ोन या token URL में नहीं जाता। बाकी पहचान (hashed) server पर रहती है।
+function redirectUrlForEvent(eventId) {
+  const base = absoluteRedirectUrl();
+  const separator = base.includes('?') ? '&' : '?';
+  return `${base}${separator}eid=${encodeURIComponent(eventId)}`;
 }
 
 const combo = products.combo;
@@ -72,6 +86,11 @@ export default function OrderForm() {
   const ipInputRef = useRef(null);
   const deviceInputRef = useRef(null);
   const redirectInputRef = useRef(null);
+  // हर फ़ॉर्म-लोड के लिए एक ही unique conversion event_id।
+  const eventIdRef = useRef(null);
+  if (!eventIdRef.current) {
+    eventIdRef.current = createEventId();
+  }
 
   // IP, शहर और डिवाइस की जानकारी भरें — मूल स्क्रिप्ट जैसा ही व्यवहार।
   useEffect(() => {
@@ -115,7 +134,9 @@ export default function OrderForm() {
   }, []);
 
   // एक ही IP से 24 घंटे में दोबारा सबमिट रोकें (मूल कोड जैसा ही)।
+  // साथ ही Meta CAPI के लिए intent दर्ज करें — CRM सबमिशन पहले जैसा ही रहेगा।
   const handleSubmit = (event) => {
+    const form = event.currentTarget;
     const currentTime = new Date().getTime();
     let storedData = {};
     try {
@@ -132,6 +153,8 @@ export default function OrderForm() {
       if (hours < 24) {
         event.preventDefault();
         alert('आप पहले ही फॉर्म सबमिट कर चुके हैं। कृपया बाद में कोशिश करें।');
+        // यह असली नई लीड नहीं है — इसलिए कोई Meta event नहीं जाएगा।
+        clearRememberedLeadEvent();
         window.location.href = absoluteRedirectUrl();
         return;
       }
@@ -146,6 +169,34 @@ export default function OrderForm() {
         // localStorage उपलब्ध न हो तो चुपचाप आगे बढ़ें।
       }
     }
+
+    // ---- Meta conversion intent (CRM submission से पहले, non-blocking) ----
+    const eventId = eventIdRef.current;
+    let phone = '';
+    try {
+      const formData = new FormData(form);
+      phone = String(formData.get('phonenumber') || '');
+    } catch {
+      phone = '';
+    }
+
+    // event_id session में याद रखें — thank-you पेज इसी से confirm करेगा।
+    rememberLeadEvent(eventId);
+    if (redirectInputRef.current) {
+      redirectInputRef.current.value = redirectUrlForEvent(eventId);
+    }
+
+    event.preventDefault();
+    sendLeadIntent({
+      eventId,
+      phone,
+      eventSourceUrl: window.location.href,
+    })
+      .catch(() => false)
+      .finally(() => {
+        // असली CRM फ़ॉर्म सबमिशन — बिल्कुल पहले जैसा (native form POST)।
+        HTMLFormElement.prototype.submit.call(form);
+      });
   };
 
   const { contact } = siteConfig;
@@ -155,10 +206,10 @@ export default function OrderForm() {
   );
   const waHref = `https://wa.me/${contact.whatsapp.replace(/\D/g, '')}?text=${waMessage}`;
 
-  // कॉल / WhatsApp क्लिक भी Lead के रूप में गिना जाए।
-  const trackLead = (method) => {
+  // कॉल / WhatsApp क्लिक — ये Contact interaction हैं, नई Lead conversions नहीं।
+  // (Lead केवल असली फ़ॉर्म सबमिशन पर, thank-you पेज से एक ही event_id के साथ जाता है।)
+  const trackContact = (method) => {
     trackEvent('Contact', { method });
-    trackEvent('Lead', { method });
   };
 
   return (
@@ -297,7 +348,7 @@ export default function OrderForm() {
                   <a
                     href={telHref}
                     className="order-form__cta-btn order-form__cta-btn--call"
-                    onClick={() => trackLead('phone')}
+                    onClick={() => trackContact('phone')}
                   >
                     <FaPhoneAlt aria-hidden="true" />
                     कॉल करें
@@ -307,7 +358,7 @@ export default function OrderForm() {
                     target="_blank"
                     rel="noreferrer"
                     className="order-form__cta-btn order-form__cta-btn--wa"
-                    onClick={() => trackLead('whatsapp')}
+                    onClick={() => trackContact('whatsapp')}
                   >
                     <FaWhatsapp aria-hidden="true" />
                     WhatsApp

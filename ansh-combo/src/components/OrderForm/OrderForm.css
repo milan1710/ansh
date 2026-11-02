@@ -148,6 +148,98 @@
   box-shadow: 0 0 0 3px rgba(18, 61, 34, 0.12);
 }
 
+/* ---------- ऑफ़र पट्टी (सबमिट बटन के ठीक ऊपर) ---------- */
+
+.order-form__offer {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 4px;
+  padding: 13px 16px;
+  border: 2px dashed rgba(198, 163, 74, 0.9);
+  border-radius: var(--radius-md);
+  background: linear-gradient(120deg, #fff9eb 0%, #fdf2d6 100%);
+  box-shadow: 0 10px 26px rgba(198, 163, 74, 0.2);
+}
+
+.order-form__offer-badge {
+  display: inline-grid;
+  place-items: center;
+  gap: 1px;
+  flex: none;
+  min-width: 78px;
+  padding: 8px 10px;
+  border-radius: var(--radius-sm);
+  background: linear-gradient(135deg, var(--forest) 0%, var(--deep) 100%);
+  color: var(--gold-soft);
+  font-family: var(--font-latin);
+  line-height: 1;
+  text-align: center;
+  box-shadow: 0 8px 18px rgba(8, 43, 24, 0.28);
+}
+
+.order-form__offer-badge svg {
+  font-size: 0.9rem;
+  color: var(--gold);
+}
+
+.order-form__offer-badge strong {
+  font-size: 1.12rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+
+.order-form__offer-badge em {
+  font-size: 0.64rem;
+  font-style: normal;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #f6e7bd;
+}
+
+.order-form__offer-copy {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+}
+
+.order-form__offer-title {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #8a6a1e;
+  letter-spacing: 0.01em;
+}
+
+.order-form__offer-price {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 8px;
+  font-size: 0.86rem;
+  font-weight: 600;
+  color: var(--deep);
+}
+
+.order-form__offer-price strong {
+  font-family: var(--font-latin);
+  font-size: 1.28rem;
+  font-weight: 800;
+  color: var(--forest);
+}
+
+.order-form__offer-price s {
+  font-size: 0.86rem;
+  font-weight: 600;
+  color: #a49a86;
+}
+
+.order-form__offer-save {
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: #1c7a3f;
+}
+
 .order-form__submit {
   margin-top: 6px;
   font-size: 1.02rem;
@@ -272,6 +364,25 @@
 
   .order-form__cta-row {
     grid-template-columns: 1fr;
+  }
+
+  /* छोटी स्क्रीन पर ऑफ़र पट्टी थोड़ी कॉम्पैक्ट रहे। */
+  .order-form__offer {
+    gap: 11px;
+    padding: 11px 13px;
+  }
+
+  .order-form__offer-badge {
+    min-width: 66px;
+    padding: 7px 8px;
+  }
+
+  .order-form__offer-badge strong {
+    font-size: 1rem;
+  }
+
+  .order-form__offer-price strong {
+    font-size: 1.12rem;
   }
 }
 

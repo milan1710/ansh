@@ -3,6 +3,7 @@ import { FaPhoneAlt, FaWhatsapp } from 'react-icons/fa';
 import {
   FiAward,
   FiLock,
+  FiPercent,
   FiShield,
   FiShoppingBag,
   FiTruck,
@@ -47,6 +48,12 @@ function redirectUrlForEvent(eventId) {
 }
 
 const combo = products.combo;
+
+// आज का ऑफ़र — छूट का प्रतिशत और बचत सीधे उत्पाद के डेटा से निकाली जाती है,
+// ताकि कीमत या MRP बदलने पर सारी जगह अपने आप अपडेट हो जाए।
+const hasMrp = Number.isFinite(combo.mrp) && combo.mrp > combo.price;
+const offPercent = hasMrp ? Math.round(((combo.mrp - combo.price) / combo.mrp) * 100) : null;
+const savings = hasMrp ? combo.mrp - combo.price : null;
 
 // डिवाइस का प्रकार पहचानें (मूल कोड जैसा ही)।
 function detectDevice() {
@@ -309,6 +316,33 @@ export default function OrderForm() {
                   placeholder="मकान, गली, इलाका, शहर, पिन कोड"
                   autoComplete="street-address"
                 />
+              </div>
+
+              {/* सबमिट बटन के ठीक ऊपर ऑफ़र की पट्टी — 50% छूट और आज की कीमत साफ़ दिखे */}
+              <div className="order-form__offer">
+                <span className="order-form__offer-badge">
+                  <FiPercent aria-hidden="true" />
+                  <strong>{hasMrp ? `${offPercent}%` : 'OFF'}</strong>
+                  <em>OFF</em>
+                </span>
+
+                <div className="order-form__offer-copy">
+                  <p className="order-form__offer-title">
+                    आज का स्पेशल ऑफ़र — सिर्फ़ आज के लिए
+                  </p>
+                  <p className="order-form__offer-price">
+                    आज की कीमत
+                    <strong>₹{combo.price.toLocaleString('en-IN')}/-</strong>
+                    {hasMrp && (
+                      <s>₹{combo.mrp.toLocaleString('en-IN')}/-</s>
+                    )}
+                  </p>
+                  {savings > 0 && (
+                    <p className="order-form__offer-save">
+                      यानी सीधे ₹{savings.toLocaleString('en-IN')}/- की बचत
+                    </p>
+                  )}
+                </div>
               </div>
 
               <button
